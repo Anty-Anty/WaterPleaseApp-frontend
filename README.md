@@ -1,0 +1,1 @@
+CRUD app for tracking plant watering. Frontend. Development code.
