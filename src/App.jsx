@@ -1,15 +1,14 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-import './App.css'
+import MainPage from './pages/MainPage';
+
+import './App.css';
 
 function App() {
 
   return (
     <>
-      <div>
-        hello
-      </div>
-
+      <MainPage/>
     </>
   )
 }
