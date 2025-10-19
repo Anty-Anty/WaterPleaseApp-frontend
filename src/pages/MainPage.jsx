@@ -1,24 +1,25 @@
 import React from "react";
 
 import PlantsList from "../components/PlantsList";
+import Map from "../components/Map";
 
-// import "./MainPage.css";
+import "./MainPage.css";
 
 const DUMMY_PLANTS_LIST = [
     {
         id: "1",
-        img: "AloeVera",
+        img: "11",
         title: "Aloe Vera",
-        lastWateredDate: "2025-10-18",
-        nextWateredDate: "2025-10-19",
+        lastWateredDate: "Sep 18",
+        nextWateredDate: "Sep 19",
         mapPosition: "h1"
     },
     {
         id: "2",
-        img: "Palm",
+        img: "22",
         title: "Palm",
-        lastWateredDate: "2025-10-18",
-        nextWateredDate: "2025-10-19",
+        lastWateredDate: "Sep 18",
+        nextWateredDate: "Sep 19",
         mapPosition: "h2"
     }
 ]
@@ -28,9 +29,25 @@ const MainPage = props => {
     return (
         <>
             {/* LIST OF PLANTS */}
-            <PlantsList
-                plants={DUMMY_PLANTS_LIST}
-            />
+
+            <div className="main-container">
+
+                <div className='plants-list'>
+                    <div className="head">
+                        <div>logo</div>
+                        <div>name</div>
+                        <div>last</div>
+                        <div>next</div>
+                    </div>
+                    <PlantsList
+                        plants={DUMMY_PLANTS_LIST}
+                    />
+                </div>
+                <div className='map'>
+                    <Map />
+                </div>
+            </div>
+
         </>
     )
 };

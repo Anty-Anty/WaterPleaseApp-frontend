@@ -9,9 +9,10 @@ const Plant = props => {
             <li className='item'>
                     <div className='item__text'>
                         <div className='item__info'>
-                            <h2>{props.title}</h2>
-                            <p>{props.lastWateredDate}</p>
-                            <p>{props.nextWateredDate}</p>
+                            <div><img src={`images/plant${props.img}.svg`} alt={`img${props.img}`} className="???" /></div>
+                            <div>{props.title}</div>
+                            <div>{props.lastWateredDate}</div>
+                            <div>{props.nextWateredDate}</div>
                         </div>
 
                         {/* <div className="button-stack">

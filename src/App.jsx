@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate, NavLink } from 'react-router-do
 
 import MainHeader from "./components/MainHeader";
 import MainPage from './pages/MainPage';
-import EditPlan from './pages/EditPlan';
+import EditMap from './pages/EditMap.jsx';
 
 import './App.css';
 
@@ -17,7 +17,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/edit" element={<EditPlan />} />
+          <Route path="/edit" element={<EditMap />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

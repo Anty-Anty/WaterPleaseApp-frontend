@@ -21,11 +21,12 @@ const PlantsList = props => {
     // render list of items
 
     return (
-        <ul className='items-list'>
+        <ul >
             {props.plants.map(plant => (
                 <Plant
                     key={plant.id}
                     id={plant.id}
+                    img={plant.img}
                     title={plant.title}
                     lastWateredDate={plant.lastWateredDate}
                     nextWateredDate={plant.nextWateredDate}
