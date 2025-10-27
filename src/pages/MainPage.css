@@ -7,8 +7,21 @@
   flex: 60%;
 }
 
+.plants-list ul{
+  padding:0;
+  margin:0;
+}
+
 .map {
   flex: 40%;
+}
+
+.plants-list-table {
+  margin: 4rem;
+
+  display: grid;
+  grid-template-rows: 40px;
+  grid-template-columns: 10% 40% 15% 15% 20%;
 }
 
 
