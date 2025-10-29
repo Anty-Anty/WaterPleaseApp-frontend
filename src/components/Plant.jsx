@@ -8,7 +8,7 @@ const Plant = props => {
         <>
             <li className='plants-list-table'>
                     
-                            <div><img src={`images/plant${props.img}.svg`} alt={`img${props.img}`} className="???" /></div>
+                            <div><img src={`images/plant${props.img}.svg`} alt={`img${props.img}`} className="plant-logo" /></div>
                             <div>{props.title}</div>
                             <div>{props.lastWateredDate}</div>
                             <div>{props.nextWateredDate}</div>

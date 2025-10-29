@@ -8,7 +8,7 @@ import "./MainPage.css";
 const DUMMY_PLANTS_LIST = [
     {
         id: "1",
-        img: "11",
+        img: "1",
         title: "Aloe Vera",
         lastWateredDate: "Sep 18",
         nextWateredDate: "Sep 19",
@@ -16,7 +16,7 @@ const DUMMY_PLANTS_LIST = [
     },
     {
         id: "2",
-        img: "22",
+        img: "2",
         title: "Palm",
         lastWateredDate: "Sep 18",
         nextWateredDate: "Sep 19",
