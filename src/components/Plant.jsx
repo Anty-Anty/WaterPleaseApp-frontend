@@ -6,7 +6,7 @@ const Plant = props => {
 
     return (
         <>
-            <li className='plants-list-table'>
+            <li className='plants-list-item'>
                     
                             <div><img src={`images/plant${props.img}.svg`} alt={`img${props.img}`} className="plant-logo" /></div>
                             <div>{props.title}</div>

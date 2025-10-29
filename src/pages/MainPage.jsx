@@ -33,7 +33,7 @@ const MainPage = props => {
             <div className="main-container">
 
                 <div className='plants-list'>
-                    <div className="plants-list-table">
+                    <div className="plants-list-item">
                         <div>logo</div>
                         <div>name</div>
                         <div>last</div>
