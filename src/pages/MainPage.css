@@ -1,6 +1,6 @@
 .main-container {
    /* 100vh - hight of header */
-  height:calc(100vh - 3rem);
+  min-height:calc(100vh - 3rem);
   display: flex;
 
 }
@@ -24,6 +24,7 @@
 
 .map-container {
   width:100%;
+  max-height: 90%; 
   /* height: 100%; */
   padding:3rem;
 
@@ -31,13 +32,14 @@
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  aspect-ratio: 1 / 1;
+  
 }
 
 .map-container-item{
   background-color: rgb(45, 52, 53);
   overflow: hidden;
   /* width: 30px; */
+  aspect-ratio: 1 / 1;
   
 }
 
