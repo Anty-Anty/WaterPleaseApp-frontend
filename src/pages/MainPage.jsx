@@ -21,7 +21,88 @@ const DUMMY_PLANTS_LIST = [
         lastWateredDate: "Sep 18",
         nextWateredDate: "Sep 19",
         mapPosition: "h2"
+    },
+    {
+        id: "2",
+        img: "2",
+        title: "Palm",
+        lastWateredDate: "Sep 18",
+        nextWateredDate: "Sep 19",
+        mapPosition: "h2"
+    },
+    {
+        id: "2",
+        img: "2",
+        title: "Palm",
+        lastWateredDate: "Sep 18",
+        nextWateredDate: "Sep 19",
+        mapPosition: "h2"
+    },
+    {
+        id: "2",
+        img: "2",
+        title: "Palm",
+        lastWateredDate: "Sep 18",
+        nextWateredDate: "Sep 19",
+        mapPosition: "h2"
+    },
+    {
+        id: "2",
+        img: "2",
+        title: "Palm",
+        lastWateredDate: "Sep 18",
+        nextWateredDate: "Sep 19",
+        mapPosition: "h2"
+    },
+    {
+        id: "2",
+        img: "2",
+        title: "Palm",
+        lastWateredDate: "Sep 18",
+        nextWateredDate: "Sep 19",
+        mapPosition: "h2"
+    },
+    {
+        id: "2",
+        img: "2",
+        title: "Palm",
+        lastWateredDate: "Sep 18",
+        nextWateredDate: "Sep 19",
+        mapPosition: "h2"
+    },
+    {
+        id: "2",
+        img: "2",
+        title: "Palm",
+        lastWateredDate: "Sep 18",
+        nextWateredDate: "Sep 19",
+        mapPosition: "h2"
+    },
+    {
+        id: "2",
+        img: "2",
+        title: "Palm",
+        lastWateredDate: "Sep 18",
+        nextWateredDate: "Sep 19",
+        mapPosition: "h2"
+    },
+    {
+        id: "2",
+        img: "2",
+        title: "Palm",
+        lastWateredDate: "Sep 18",
+        nextWateredDate: "Sep 19",
+        mapPosition: "h2"
+    },
+    {
+        id: "2",
+        img: "2",
+        title: "Palm",
+        lastWateredDate: "Sep 18",
+        nextWateredDate: "Sep 19",
+        mapPosition: "h2"
     }
+
 ]
 
 const MainPage = props => {
@@ -33,16 +114,19 @@ const MainPage = props => {
             <div className="main-container">
 
                 <div className='plants-list'>
-                    <div className="plants-list-item">
-                        <div>logo</div>
-                        <div>name</div>
-                        <div>last</div>
-                        <div>next</div>
-                        <div></div>
+                    <div className='plants-list-container'>
+                        <div className="plants-list-item">
+                            <div></div>
+                            <div></div>
+                            <div>last</div>
+                            <div>next</div>
+                            <div></div>
+                        </div>
+
+                        <PlantsList
+                            plants={DUMMY_PLANTS_LIST}
+                        />
                     </div>
-                    <PlantsList 
-                        plants={DUMMY_PLANTS_LIST}
-                    />
                 </div>
                 <div className='map'>
                     <Map />

@@ -1,61 +1,86 @@
 .main-container {
-   /* 100vh - hight of header */
-  min-height:calc(100vh - 3rem);
+  /* 100vh - hight of header */
+  min-height: calc(100vh - 3rem);
   display: flex;
 
 }
 
+/* LIST */
 .plants-list {
-  flex: 60%;
-}
-
-.plants-list ul{
-  padding:0;
-  margin:0;
-}
-
-.map {
-  flex: 40%;
+  flex: 50%;
 
   display: flex;
-  justify-content: center; 
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
 }
 
-.map-container {
-  width:100%;
-  max-height: 90%; 
-  /* height: 100%; */
-  padding:3rem;
+.plants-list-container {
+  align-self: flex-start;
+  margin-top: 3rem;
+  width: 100%;
 
-
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  
+  padding-top: 3rem;
 }
 
-.map-container-item{
-  background-color: rgb(45, 52, 53);
-  overflow: hidden;
-  /* width: 30px; */
-  aspect-ratio: 1 / 1;
-  
+.plants-list ul {
+  padding: 0;
+  margin: 0;
 }
 
 .plants-list-item {
-  margin:  1rem 4rem 1rem 4rem;
+  margin: 0rem 4rem 1rem 4rem;
 
   display: grid;
   grid-template-rows: 40px;
-  grid-template-columns: 10% 40% 20% 20% 10%;
+  grid-template-columns: 15% 40% 17.5% 17.5% 10%;
   align-items: center;
 }
 
+.plants-list-item div:nth-child(3),
+.plants-list-item div:nth-child(4) {
+  text-align: center;
+}
 
 .plant-logo {
-  height:40px;
+  height: 40px;
 }
+
+
+/* MAP */
+.map {
+  max-height: calc(100vh - 3rem);
+  flex: 50%;
+
+  display: flex;
+  /* justify-content: center; 
+  align-items: center; */
+}
+
+.map-container {
+  align-self: flex-start;
+  margin-top: 3rem;
+
+  width: 100%;
+  /* height: 100%; */
+  padding: 3rem;
+
+
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  grid-template-columns: repeat(7, 1fr);
+  aspect-ratio: 1 / 1;
+
+}
+
+.map-container-item {
+  background-color: rgb(45, 52, 53);
+  overflow: hidden;
+  /* width: 30px; */
+
+
+}
+
+
 
 
 
@@ -80,15 +105,20 @@
 @media (max-width: 900px) {
 
   .main-container {
-  flex-direction: column;
-}
+    flex-direction: column;
+  }
+
+   .plants-list-container {
+    padding: 0rem 2rem 0rem 2rem;
+  }
 
   .plants-list-item {
-  margin:  1rem 3rem 1rem 3rem;
-}
+    margin: 1rem 3rem 1rem 3rem;
+  }
 
-.map-container {
-  padding:8rem;
-}
+  .map-container {
+    padding: 5rem;
+    padding-top: 1rem;
+  }
 
 }

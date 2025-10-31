@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 // import './Plant.css';
 
-const SquaresNumber = 25;
+const SquaresNumber = 49;
 
 const Map = props => {
 
