@@ -23,79 +23,23 @@ const DUMMY_PLANTS_LIST = [
         mapPosition: "h2"
     },
     {
-        id: "2",
-        img: "2",
+        id: "3",
+        img: "3",
         title: "Palm",
         lastWateredDate: "Sep 18",
         nextWateredDate: "Sep 19",
         mapPosition: "h2"
     },
     {
-        id: "2",
-        img: "2",
+        id: "4",
+        img: "4",
         title: "Palm",
         lastWateredDate: "Sep 18",
         nextWateredDate: "Sep 19",
         mapPosition: "h2"
     },
     {
-        id: "2",
-        img: "2",
-        title: "Palm",
-        lastWateredDate: "Sep 18",
-        nextWateredDate: "Sep 19",
-        mapPosition: "h2"
-    },
-    {
-        id: "2",
-        img: "2",
-        title: "Palm",
-        lastWateredDate: "Sep 18",
-        nextWateredDate: "Sep 19",
-        mapPosition: "h2"
-    },
-    {
-        id: "2",
-        img: "2",
-        title: "Palm",
-        lastWateredDate: "Sep 18",
-        nextWateredDate: "Sep 19",
-        mapPosition: "h2"
-    },
-    {
-        id: "2",
-        img: "2",
-        title: "Palm",
-        lastWateredDate: "Sep 18",
-        nextWateredDate: "Sep 19",
-        mapPosition: "h2"
-    },
-    {
-        id: "2",
-        img: "2",
-        title: "Palm",
-        lastWateredDate: "Sep 18",
-        nextWateredDate: "Sep 19",
-        mapPosition: "h2"
-    },
-    {
-        id: "2",
-        img: "2",
-        title: "Palm",
-        lastWateredDate: "Sep 18",
-        nextWateredDate: "Sep 19",
-        mapPosition: "h2"
-    },
-    {
-        id: "2",
-        img: "2",
-        title: "Palm",
-        lastWateredDate: "Sep 18",
-        nextWateredDate: "Sep 19",
-        mapPosition: "h2"
-    },
-    {
-        id: "2",
+        id: "5",
         img: "2",
         title: "Palm",
         lastWateredDate: "Sep 18",
