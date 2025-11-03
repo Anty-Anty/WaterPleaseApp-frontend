@@ -10,9 +10,9 @@ const MainHeader = props => {
                 WaterPleaseApp
             </div>
 
-            <div className="main-header-btn">
+            {/* <div className="main-header-btn">
                 edit map
-            </div>
+            </div> */}
         </header>
     )
 };
