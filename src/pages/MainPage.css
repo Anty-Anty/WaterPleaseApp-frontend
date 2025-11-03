@@ -49,13 +49,19 @@
 
 }
 
-/* .plants-list-item div:nth-child(3),
+.plants-list-item div:nth-child(3),
 .plants-list-item div:nth-child(4) {
   text-align: center;
-} */
+}
 
 .plant-logo {
   height: 40px;
+}
+
+.add-plant-btn{
+   grid-column: 1 / 5;
+   background-color: #383838;
+   
 }
 
 

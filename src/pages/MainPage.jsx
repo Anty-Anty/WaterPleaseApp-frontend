@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useReducer, useEffect } from "react";
 
 import PlantsList from "../components/PlantsList";
 import Map from "../components/Map";
@@ -51,12 +51,25 @@ const DUMMY_PLANTS_LIST = [
 
 const MainPage = props => {
 
+    // ADD ITEM
+    // state controls visibility of AddItem.jsx
+    const [showAddItem, setShowAddItem] = useState(false);
+
+    // const showAddHandler = () => { setShowAddItem(true) };
+    // const closeAddHandler = () => { setShowAddItem(false) };
+
+    // updating UI: new item is added locally to state without reset of the scroll position 
+    // const handleItemAdded = (newItem) => {
+    //     setLoadedItems((prevItems) => [...prevItems, newItem]);
+    // };
+
+    //JSX
     return (
         <>
-            {/* LIST OF PLANTS */}
 
             <div className="main-container">
 
+                {/* LIST OF PLANTS */}
                 <div className='plants-list'>
                     <div className='plants-list-container'>
                         <div className="plants-list-item">
@@ -70,11 +83,29 @@ const MainPage = props => {
                         <PlantsList
                             plants={DUMMY_PLANTS_LIST}
                         />
+
+                        {/* ADD ITEM */}
+                        {/* {showAddItem && (
+                            <AddItem
+                                closeAddHandler={closeAddHandler}
+                                onItemAdded={handleItemAdded} />
+                        )} */}
+
+                        {!showAddItem && <div className='plants-list-item'>
+                            <button className='add-plant-btn'>
+                                add plant
+                            </button>
+                        </div>
+                        }
+
                     </div>
                 </div>
+
+                {/* MAP */}
                 <div className='map'>
                     <Map />
                 </div>
+
             </div>
 
         </>
