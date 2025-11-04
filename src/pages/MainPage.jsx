@@ -3,6 +3,8 @@ import React, { useState, useReducer, useEffect } from "react";
 import PlantsList from "../components/PlantsList";
 import Map from "../components/Map";
 
+import Modal from '../components/UIElements/Modal';
+
 import "./MainPage.css";
 
 const DUMMY_PLANTS_LIST = [
@@ -55,8 +57,8 @@ const MainPage = props => {
     // state controls visibility of AddItem.jsx
     const [showAddItem, setShowAddItem] = useState(false);
 
-    // const showAddHandler = () => { setShowAddItem(true) };
-    // const closeAddHandler = () => { setShowAddItem(false) };
+    const showAddModalHandler = () => { setShowAddItem(true) };
+    const closeAddModalHandler = () => { setShowAddItem(false) };
 
     // updating UI: new item is added locally to state without reset of the scroll position 
     // const handleItemAdded = (newItem) => {
@@ -85,14 +87,22 @@ const MainPage = props => {
                         />
 
                         {/* ADD ITEM */}
-                        {/* {showAddItem && (
-                            <AddItem
-                                closeAddHandler={closeAddHandler}
-                                onItemAdded={handleItemAdded} />
-                        )} */}
+                        <Modal
+                            show={showAddItem}
+                            onCancel={closeAddModalHandler}
+                            footer={
+                                <>
+                                    <button type="button" >delete</button>
+                                    <button type="button" onClick={closeAddModalHandler}>cancel</button>
+                                </>
+                            }
+                        >
+                            <p>Please confirm deletion.</p>
+                        </Modal>
+
 
                         {!showAddItem && <div className='plants-list-item'>
-                            <button className='add-plant-btn'>
+                            <button className='add-plant-btn' onClick={showAddModalHandler}>
                                 add plant
                             </button>
                         </div>
