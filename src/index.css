@@ -44,10 +44,11 @@ button {
   /* background-color: #1a1a1a; */
   cursor: pointer;
   transition: border-color 0.25s;
+  color: rgba(255, 255, 255, 0.65);
 }
 
 button:hover {
-  border-color: #666666;
+  border-color: #727272;
 }
 
 button:focus,

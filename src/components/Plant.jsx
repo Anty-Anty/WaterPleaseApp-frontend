@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// import './Plant.css';
+import './Plant.css';
 
 const Plant = props => {
 
@@ -18,6 +18,11 @@ const Plant = props => {
                             <button onClick={props.showEditModalHandler}>edit</button>
                             <button onClick={props.showDeleteModalHandler}>delete</button>
                         </div> */}
+                        
+                        <div className="plant-button-stack">
+                            <button>✎</button>
+                            <button>🗑</button>
+                        </div>
 
                     
             </li>
