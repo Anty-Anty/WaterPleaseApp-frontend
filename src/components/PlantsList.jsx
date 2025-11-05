@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Plant from './Plant';
+import EditPlant from './EditPlant';
 
 // import './PlantsList.css';
 
@@ -22,21 +23,34 @@ const PlantsList = props => {
 
     return (
         <ul >
-            {props.plants.map(plant => (
-                <Plant
-                    key={plant.id}
-                    id={plant.id}
-                    img={plant.img}
-                    title={plant.title}
-                    lastWateredDate={plant.lastWateredDate}
-                    nextWateredDate={plant.nextWateredDate}
-                    mapPosition={plant.mapPosition}
-                    // showEditModalHandler={()=>props.showEditModalHandler(plant.id)} //pass the edited item Id
-                    // showDeleteModalHandler={()=>props.showDeleteModalHandler(plant.id)} //pass the edited item Id
-                    showDeleteModalHandler={()=>props.showDeleteModalHandler()} //pass the edited item Id
-                />
+            {props.plants.map(plant => {
 
-            ))}
+                if (props.editingPlantId === plant.id) {
+                    return (
+                        <EditPlant
+                            key={plant.id}
+                            // plant={plant}
+                            closeEditModalHandler={() => props.setEditingPlantId(null)}
+                        />
+                    )
+                }
+                return (
+                    <Plant
+                        key={plant.id}
+                        id={plant.id}
+                        img={plant.img}
+                        title={plant.title}
+                        lastWateredDate={plant.lastWateredDate}
+                        nextWateredDate={plant.nextWateredDate}
+                        mapPosition={plant.mapPosition}
+
+                        setEditingPlantId={props.setEditingPlantId}
+                        // showEditModalHandler={()=>props.showEditModalHandler(plant.id)} //pass the edited item Id
+                        // showDeleteModalHandler={()=>props.showDeleteModalHandler(plant.id)} //pass the edited item Id
+                        showDeleteModalHandler={props.showDeleteModalHandler} //pass the edited item Id
+                    />
+                )
+            })}
 
         </ul>
     )

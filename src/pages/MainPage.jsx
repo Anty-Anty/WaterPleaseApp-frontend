@@ -69,6 +69,8 @@ const MainPage = props => {
     // EDIT ITEM.
     // state controls visibility of EditItem.jsx
     const [showEditItem, setShowEditItem] = useState(false);
+    // store the ID of the plant currently being edited
+    const [editingPlantId, setEditingPlantId] = useState(null);
 
     const showEditModalHandler = () => {
         setShowEditItem(true);
@@ -117,7 +119,9 @@ const MainPage = props => {
 
                         <PlantsList
                             plants={DUMMY_PLANTS_LIST}
-                            showDeleteModalHandler = {showDeleteModalHandler}
+                            editingPlantId={editingPlantId}
+                            setEditingPlantId={setEditingPlantId}
+                            showDeleteModalHandler={showDeleteModalHandler}
                         />
 
                         {/* ADD ITEM */}

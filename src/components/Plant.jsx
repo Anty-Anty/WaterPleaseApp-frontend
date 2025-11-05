@@ -4,6 +4,8 @@ import './Plant.css';
 
 const Plant = props => {
 
+    const isEditing = props.editingPlantId === props.id;
+
     return (
         <>
             <li className='plants-list-item'>
@@ -20,7 +22,7 @@ const Plant = props => {
                         </div> */}
                         
                         <div className="plant-button-stack">
-                            <button>✎</button>
+                            <button onClick={() => props.setEditingPlantId(props.id)}>✎</button>
                             <button onClick={props.showDeleteModalHandler}>🗑</button>
                         </div>
 
