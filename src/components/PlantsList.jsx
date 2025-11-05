@@ -33,6 +33,7 @@ const PlantsList = props => {
                     mapPosition={plant.mapPosition}
                     // showEditModalHandler={()=>props.showEditModalHandler(plant.id)} //pass the edited item Id
                     // showDeleteModalHandler={()=>props.showDeleteModalHandler(plant.id)} //pass the edited item Id
+                    showDeleteModalHandler={()=>props.showDeleteModalHandler()} //pass the edited item Id
                 />
 
             ))}

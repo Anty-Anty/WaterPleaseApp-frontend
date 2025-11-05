@@ -21,7 +21,7 @@ const Plant = props => {
                         
                         <div className="plant-button-stack">
                             <button>✎</button>
-                            <button>🗑</button>
+                            <button onClick={props.showDeleteModalHandler}>🗑</button>
                         </div>
 
                     

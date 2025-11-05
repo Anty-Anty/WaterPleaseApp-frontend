@@ -1,0 +1,13 @@
+.add-plant-button-stack>* {
+    background-color: transparent;
+    padding: 0;
+    width: 50%;
+    font-size: 1.4em;
+}
+
+.add-plant-button-stack >*:hover {
+    border-color: transparent;
+    color: rgba(255, 255, 255, 0.45);
+
+}
+

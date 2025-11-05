@@ -4,6 +4,7 @@ import PlantsList from "../components/PlantsList";
 import Map from "../components/Map";
 
 import Modal from '../components/UIElements/Modal';
+import AddPlant from "../components/AddPlant";
 
 import "./MainPage.css";
 
@@ -65,6 +66,38 @@ const MainPage = props => {
     //     setLoadedItems((prevItems) => [...prevItems, newItem]);
     // };
 
+    // EDIT ITEM.
+    // state controls visibility of EditItem.jsx
+    const [showEditItem, setShowEditItem] = useState(false);
+
+    const showEditModalHandler = () => {
+        setShowEditItem(true);
+    };
+
+    const closeEditModalHandler = () => {
+        setShowEditItem(false);
+    };
+
+    // updating UI: updated items added localy to state to reflect changes immidietly
+    // const handleItemUpdated = (updatedItem) => {
+    //     setLoadedItems(prevItems =>
+    //         prevItems.map(item =>
+    //             item.id === updatedItem.id ? updatedItem : item
+    //         )
+    //     );
+    // };
+
+    // DELETE ITEM confirmation.
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+    const showDeleteModalHandler = () => {
+        setShowDeleteModal(true);
+    };
+
+    const closeDeleteModalHandler = () => {
+        setShowDeleteModal(false);
+    };
+
     //JSX
     return (
         <>
@@ -84,22 +117,10 @@ const MainPage = props => {
 
                         <PlantsList
                             plants={DUMMY_PLANTS_LIST}
+                            showDeleteModalHandler = {showDeleteModalHandler}
                         />
 
                         {/* ADD ITEM */}
-                        <Modal
-                            show={showAddItem}
-                            onCancel={closeAddModalHandler}
-                            footer={
-                                <>
-                                    <button type="button" >delete</button>
-                                    <button type="button" onClick={closeAddModalHandler}>cancel</button>
-                                </>
-                            }
-                        >
-                            <p>Please confirm deletion.</p>
-                        </Modal>
-
 
                         {!showAddItem && <div className='plants-list-item'>
                             <button className='add-plant-btn' onClick={showAddModalHandler}>
@@ -107,6 +128,28 @@ const MainPage = props => {
                             </button>
                         </div>
                         }
+
+                        {showAddItem && (
+                            <AddPlant
+                                closeAddModalHandler={closeAddModalHandler}
+                            />
+                        )}
+
+                        {/* EDIT ITEM */}
+
+                        {/* CONFIRATION TO DELETE ITEM */}
+                        <Modal
+                            show={showDeleteModal}
+                            onCancel={closeDeleteModalHandler}
+                            footer={
+                                <>
+                                    <button type="button" >delete</button>
+                                    <button type="button" onClick={closeDeleteModalHandler}>cancel</button>
+                                </>
+                            }
+                        >
+                            <p>Please confirm deletion.</p>
+                        </Modal>
 
                     </div>
                 </div>
