@@ -1,8 +1,41 @@
-.err {
+/* .err {
     padding: 0.5rem;
     color: #b96262;
     font-size: 0.8rem;
+} */
+
+
+
+.input-wrapper {
+  position: relative;
+  display: inline-block; /* or block if full width */
+  width: 100%;
 }
 
+.err {
+  position: absolute;
+  top: 100%; /* directly below input */
+  left: -40px;
+  transform: translateY(4px);
+  background-color: rgba(244, 67, 54, 0.3); /* red error bubble */
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: 5px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
 
+/* small arrow pointer */
+.err::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 80px;
+  border-width: 4px;
+  border-style: solid;
+  border-color: transparent transparent rgba(244, 67, 54, 0.3) transparent;
+}
 

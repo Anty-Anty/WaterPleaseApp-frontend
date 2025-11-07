@@ -12,12 +12,12 @@ const inputReducer = (state, action) => {
                 value: action.val,
                 isValid: validate(action.val, action.validators)
             };
-            case 'TOUCH':{
-                return {
-                    ...state,
-                    isTouched:true
-                }
+        case 'TOUCH': {
+            return {
+                ...state,
+                isTouched: true
             }
+        }
         default:
             return state;
     }
@@ -27,30 +27,32 @@ const inputReducer = (state, action) => {
 const Input = props => {
 
     // useReducer
-    const [inputState, dispatch] = useReducer(inputReducer, { 
-        value: props.initialValue || '', 
+    const [inputState, dispatch] = useReducer(inputReducer, {
+        value: props.initialValue || '',
         isTouched: false,
         isValid: props.initialValidity || false
     });
 
-    const {id, onInput} = props;
-    const{value, isValid} = inputState;
+    const { id, onInput } = props;
+    const { value, isValid } = inputState;
 
-    useEffect(()=>{
-        onInput(id, value, isValid)
-    },[id, value, isValid, onInput])
+
+    // UNLOCK WHEN FORM-HOOK is ready
+    // useEffect(()=>{
+    //     onInput(id, value, isValid)
+    // },[id, value, isValid, onInput])
 
     const changeHandler = event => {
         //useReducer action
-        dispatch({type:'CHANGE', val: event.target.value, validators: props.validators});
+        dispatch({ type: 'CHANGE', val: event.target.value, validators: props.validators });
     };
 
-    const touchHandler = () =>{
+    const touchHandler = () => {
         dispatch({
-            type:'TOUCH'
+            type: 'TOUCH'
         });
     };
-    
+
     const element = props.element === 'input' ?
         (<input
             id={props.id}
@@ -74,11 +76,13 @@ const Input = props => {
             />);
 
     return (
-    <>
-    {element}
-    {!inputState.isValid && inputState.isTouched && <div className="err">{props.errorText}</div>}
-    
-    </>
+        <>
+            {/* <div> around your input and error — so the error can position relative to it. */}
+            <div className="input-wrapper">
+                {element}
+                {!inputState.isValid && inputState.isTouched && <div className="err">{props.errorText}</div>}
+            </div>
+        </>
     )
 
 };
