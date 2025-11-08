@@ -8,16 +8,5 @@
 .add-plant-button-stack >*:hover {
     border-color: transparent;
     color: rgba(255, 255, 255, 0.45);
-
-}
-
-.add-input {
-  width: 100%; /* the reason why input was overflowing */
-  padding: 4px 0px 4px 4px;
-  background: #2e2e2e;
-  /* border-radius: 4px; */
-  border: 1px solid #5c5b5b;
-
-  /* text-align: center */
 }
 

@@ -3,7 +3,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-   color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.65);
   background-color: #141414;
 
   font-synthesis: none;
@@ -34,6 +34,16 @@ h1 {
   line-height: 1.1;
 }
 
+
+input,
+textarea,
+select,
+button {
+  font: inherit;  /* inherit font-size, font-family, line-height, etc. */
+}
+
+/* BUTTONS */
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -51,14 +61,50 @@ button:hover {
   border-color: #727272;
 }
 
+/* accessibility “focus ring” */
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  /* outline: 1px auto -webkit-focus-ring-color; */
+  outline: none;
+}
+
+/* INPUTS */
+
+input {
+  font-size: 0.9rem;
+
+  width: calc(100% - 5px); /* the reason why input was overflowing */
+  height: 100%;
+  padding: 4px 0px 4px 6px;
+  background: #2e2e2e;
+  color: rgba(255, 255, 255, 0.65);
+  
+  /* border-radius: 4px; */
+  border: 1px solid #5c5b5b;
+
+  transition: all 0.2s ease;
+  /* text-align: center */
+}
+
+/* input {
+  border: 1px solid #ccc;
+  transition: all 0.2s ease;
+} */
+
+input:hover {
+  border-color: #999;
+}
+
+input:focus {
+  border-color: #d3d3d3;
+}
+
+/* accessibility “focus ring” */
+input:focus-visible {
+  outline: none;
 }
 
 /* scrollbar controls */
-
-
 
 /* width */
 ::-webkit-scrollbar {

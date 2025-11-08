@@ -10,35 +10,35 @@ const AddPlant = props => {
     return (
         <>
             <div className='plants-list-item'>
-                    
-                            <div>logo</div>
-                            <div>
-                                <Input
-                                    id='plant'
-                                    element="input"
-                                    name="toDoItem"
-                                    placeholder="plant name"
-                                    className='add-input'
-                                    validators={[VALIDATOR_REQUIRE(), VALIDATOR_MAXLENGTH(50)]}
-                                    errorText='Enter a valid plant name — 1 to 50 characters required.'
-                                    // onInput={inputHandler}
-                                />
-                            </div>
-                            <div>input</div>
-                            <div>input</div>
-                        
 
-                        {/* <div className="button-stack">
+                <div>logo</div>
+
+                <Input
+                    id='plant'
+                    element="input"
+                    name="toDoItem"
+                    placeholder="enter plant name"
+                    className='add-input'
+                    validators={[VALIDATOR_REQUIRE(), VALIDATOR_MAXLENGTH(50)]}
+                    errorText='Enter a valid plant name — 1 to 50 characters required.'
+                // onInput={inputHandler}
+                />
+
+                <div>input</div>
+                <div>input</div>
+
+
+                {/* <div className="button-stack">
                             <button onClick={props.showEditModalHandler}>edit</button>
                             <button onClick={props.showDeleteModalHandler}>delete</button>
                         </div> */}
-                        
-                        <div className="add-plant-button-stack">
-                            <button>✔</button>
-                            <button onClick={props.closeAddModalHandler}>✖</button>
-                        </div>
 
-                    
+                <div className="add-plant-button-stack">
+                    <button>✔</button>
+                    <button onClick={props.closeAddModalHandler}>✖</button>
+                </div>
+
+
             </div>
         </>
     );
