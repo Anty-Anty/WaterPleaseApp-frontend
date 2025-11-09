@@ -9,24 +9,26 @@ const Plant = props => {
     return (
         <>
             <li className='plants-list-item'>
-                    
-                            <div><img src={`images/plant${props.img}.svg`} alt={`img${props.img}`} className="plant-logo" /></div>
-                            <div>{props.title}</div>
-                            <div>{props.lastWateredDate}</div>
-                            <div>{props.nextWateredDate}</div>
-                        
 
-                        {/* <div className="button-stack">
+                <div>
+                    <img src={`images/plant${props.img}.svg`} alt={`img${props.img}`} className="plant-logo" />
+                </div>
+                <div>{props.title}</div>
+                <div>{props.lastWateredDate}</div>
+                <div>{props.nextWateredDate}</div>
+
+
+                {/* <div className="button-stack">
                             <button onClick={props.showEditModalHandler}>edit</button>
                             <button onClick={props.showDeleteModalHandler}>delete</button>
                         </div> */}
-                        
-                        <div className="plant-button-stack">
-                            <button onClick={() => props.setEditingPlantId(props.id)}>✎</button>
-                            <button onClick={props.showDeleteModalHandler}>🗑</button>
-                        </div>
 
-                    
+                <div className="plant-button-stack">
+                    <button onClick={() => props.setEditingPlantId(props.id)}>✎</button>
+                    <button onClick={props.showDeleteModalHandler}>🗑</button>
+                </div>
+
+
             </li>
         </>
     );

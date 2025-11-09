@@ -1,17 +1,32 @@
 import React, { useState } from 'react';
 
 import Input from './FormElements/Input';
+import LogoPicker from './LogoPicker';
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH } from './util/validators';
 
-// import './EditPlant.css';
+import './AddEditPlant.css';
 
 const EditPlant = props => {
+
+    const [showLogoPicker, setShowLogoPicker] = useState(false);
+
+    const showLogoPickerHandler = () => { setShowLogoPicker(prev => !prev); };
 
     return (
         <>
             <div className='plants-list-item'>
 
-                <div>logo</div>
+                <div className="add-edit-plant-logo" onClick={showLogoPickerHandler}>
+                    logo
+                    {showLogoPicker && (
+                        <LogoPicker
+                        // availableLogos={logoList}
+                        // selectedLogo={formData.logo}
+                        // onSelect={(logo) => setFormData({ ...formData, logo })}
+                        />
+                    )}
+                </div>
+
 
                 <Input
                     id='plant'
@@ -33,7 +48,7 @@ const EditPlant = props => {
                             <button onClick={props.showDeleteModalHandler}>delete</button>
                         </div> */}
 
-                <div className="add-plant-button-stack">
+                <div className="add-edit-plant-button-stack">
                     <button>✔</button>
                     <button onClick={props.closeEditModalHandler}>✖</button>
                 </div>

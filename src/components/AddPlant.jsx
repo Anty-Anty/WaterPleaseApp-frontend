@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Input from './FormElements/Input';
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH } from './util/validators';
 
-import './AddPlant.css';
+import './AddEditPlant.css';
 
 const AddPlant = props => {
 
@@ -11,7 +11,7 @@ const AddPlant = props => {
         <>
             <div className='plants-list-item'>
 
-                <div>logo</div>
+                <div className="add-edit-plant-logo">logo</div>
 
                 <Input
                     id='plant'
@@ -33,7 +33,7 @@ const AddPlant = props => {
                             <button onClick={props.showDeleteModalHandler}>delete</button>
                         </div> */}
 
-                <div className="add-plant-button-stack">
+                <div className="add-edit-plant-button-stack">
                     <button>✔</button>
                     <button onClick={props.closeAddModalHandler}>✖</button>
                 </div>
