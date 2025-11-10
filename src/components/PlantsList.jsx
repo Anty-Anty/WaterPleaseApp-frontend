@@ -29,6 +29,9 @@ const PlantsList = props => {
                     return (
                         <EditPlant
                             key={plant.id}
+                            img={plant.img}
+                            title={plant.title}
+                            logoList={props.plants}
                             // plant={plant}
                             closeEditModalHandler={() => props.setEditingPlantId(null)}
                         />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Input from './FormElements/Input';
 import LogoPicker from './LogoPicker';
@@ -8,21 +8,40 @@ import './AddEditPlant.css';
 
 const EditPlant = props => {
 
+    //state controles visibility of logoPicker.jsx
     const [showLogoPicker, setShowLogoPicker] = useState(false);
+    const openLogoPickerHandler = () => setShowLogoPicker(true);
+    const closeLogoPickerHandler = () => setShowLogoPicker(false);
 
-    const showLogoPickerHandler = () => { setShowLogoPicker(prev => !prev); };
+
+    // state stores eaither logo picked in logoPicker.jsx or logo from PlantsList.jsx 
+    const [selectedLogo, setSelectedLogo] = useState(props.logo || null);
 
     return (
         <>
             <div className='plants-list-item'>
 
-                <div className="add-edit-plant-logo" onClick={showLogoPickerHandler}>
-                    logo
+                <div className="add-edit-plant-logo" >
+
+                    {/* shows eaither logo picked in logoPicker.jsx or logo from PlantsList.jsx */}
+                    <img
+                        onClick={openLogoPickerHandler}
+                        src={`images/plant${selectedLogo || props.img}.svg`}
+                        alt={`img${props.title}`}
+                        className="plant-logo"
+                    />
+
+                    
                     {showLogoPicker && (
                         <LogoPicker
-                        // availableLogos={logoList}
-                        // selectedLogo={formData.logo}
-                        // onSelect={(logo) => setFormData({ ...formData, logo })}
+                            show={showLogoPicker}
+                            onCancel={closeLogoPickerHandler}
+                            availableLogos={props.logoList}
+                            selectedLogo={selectedLogo}
+                            onSelect={(logo) => {
+                                setSelectedLogo(logo);
+                                setShowLogoPicker(false);
+                            }}
                         />
                     )}
                 </div>

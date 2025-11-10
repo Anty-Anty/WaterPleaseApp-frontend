@@ -2,11 +2,22 @@
     position: absolute;
 
     display: grid;
-    grid-template-columns: repeat(auto-fill, 50px);
+    grid-template-columns: repeat(5, 50px);
     gap: 0.5rem;
     padding: 0.5rem;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
+    z-index: 100;
+}
+
+.logo-picker::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 10px;
+  border-width: 7px;
+  border-style: solid;
+  border-color: transparent transparent rgba(255, 255, 255, 0.05) transparent;
 }
 
 .logo-option {
@@ -31,6 +42,6 @@
 }
 
 .logo-option.selected {
-    border-color: #4caf50;
+    border-color: #999999;
     /* highlight selected */
 }
