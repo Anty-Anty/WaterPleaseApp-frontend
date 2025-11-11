@@ -1,6 +1,7 @@
 .logo-picker {
     position: absolute;
 
+    margin-top: 3rem;
     display: grid;
     grid-template-columns: repeat(5, 50px);
     gap: 0.5rem;
@@ -26,6 +27,7 @@
     cursor: pointer;
     border: 1px solid transparent;
     border-radius: 8px;
+
     display: flex;
     align-items: center;
     justify-content: center;

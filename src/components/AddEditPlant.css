@@ -1,8 +1,13 @@
 .add-edit-plant-logo {
+    display: flex;
     position: relative;
 }
 
 .add-edit-plant-logo .plant-logo {
+    cursor: pointer;
+}
+
+.add-edit-plant-logo p {
     cursor: pointer;
 }
 

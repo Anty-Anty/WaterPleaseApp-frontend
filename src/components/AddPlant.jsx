@@ -1,17 +1,63 @@
 import React, { useState } from 'react';
 
 import Input from './FormElements/Input';
+import LogoPicker from './UIElements/LogoPicker';
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH } from './util/validators';
+import { useImagesList } from './hooks/ImagesList-hook';
 
 import './AddEditPlant.css';
 
 const AddPlant = props => {
 
+    const logos = useImagesList('plant');
+
+    //state controles visibility of logoPicker.jsx
+    const [showLogoPicker, setShowLogoPicker] = useState(false);
+    const openLogoPickerHandler = () => setShowLogoPicker(true);
+    const closeLogoPickerHandler = () => setShowLogoPicker(false);
+
+
+    // state stores eaither logo picked in logoPicker.jsx or logo from PlantsList.jsx 
+    const [selectedLogo, setSelectedLogo] = useState(props.logo || null);
+
     return (
         <>
             <div className='plants-list-item'>
 
-                <div className="add-edit-plant-logo">logo</div>
+                <div className="add-edit-plant-logo">
+
+                    {/* shows eaither logo picked in logoPicker.jsx or logo from PlantsList.jsx */}
+                    {
+                        selectedLogo ?
+                        <img
+                            onClick={openLogoPickerHandler}
+                            src={`images/plant_${selectedLogo}.svg`}
+                            alt={`plant_${selectedLogo}`}
+                            className="plant-logo"
+                        />
+                        :
+                        <img
+                            onClick={openLogoPickerHandler}
+                            src={`images/plant_bw.svg`}
+                            alt={`plant_bw`}
+                            className="plant-logo"
+                        />
+                    }
+
+
+                    {showLogoPicker && (
+                        <LogoPicker
+                            show={showLogoPicker}
+                            onCancel={closeLogoPickerHandler}
+                            availableLogos={logos}
+                            selectedLogo={selectedLogo}
+                            onSelect={(logo) => {
+                                setSelectedLogo(logo);
+                                setShowLogoPicker(false);
+                            }}
+                        />
+                    )}
+                </div>
 
                 <Input
                     id='plant'
@@ -39,7 +85,7 @@ const AddPlant = props => {
                 </div>
 
 
-            </div>
+            </div >
         </>
     );
 };

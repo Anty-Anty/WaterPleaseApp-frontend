@@ -10,7 +10,7 @@ const Plant = props => {
         <>
             <li className='plants-list-item'>
 
-                <div>
+                <div className="add-edit-plant-logo">
                     <img src={`images/plant_${props.img}.svg`} alt={`plant_${props.img}`} className="plant-logo" />
                 </div>
                 <div>{props.title}</div>

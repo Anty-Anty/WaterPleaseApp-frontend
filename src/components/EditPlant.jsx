@@ -32,7 +32,7 @@ const EditPlant = props => {
                     <img
                         onClick={openLogoPickerHandler}
                         src={`images/plant_${selectedLogo || props.img}.svg`}
-                        alt={`plant_${props.img}`}
+                        alt={`plant_${selectedLogo || props.img}`}
                         className="plant-logo"
                     />
 
