@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Backdrop from './UIElements/Backdrop';
+import Backdrop from './Backdrop';
 
 import './LogoPicker.css';
 
@@ -16,8 +16,8 @@ const LogoPicker = props => {
                         onClick={() => {props.onSelect(plant.img);}}
                     >
                         <img
-                            src={`images/plant${plant.img}.svg`}
-                            alt={`img${plant.title}`}
+                            src={`images/plant_${plant.img}.svg`}
+                            alt={`plant_${plant.img}`}
                             className="plant-logo"
                         />
                     </div>

@@ -2,6 +2,10 @@
     position: relative;
 }
 
+.add-edit-plant-logo .plant-logo {
+    cursor: pointer;
+}
+
 .add-edit-plant-button-stack>* {
     background-color: transparent;
     padding: 0;
@@ -14,3 +18,5 @@
     color: rgba(255, 255, 255, 0.45);
 }
 
+                                                                              
+                                                            

@@ -11,7 +11,7 @@ const Plant = props => {
             <li className='plants-list-item'>
 
                 <div>
-                    <img src={`images/plant${props.img}.svg`} alt={`img${props.img}`} className="plant-logo" />
+                    <img src={`images/plant_${props.img}.svg`} alt={`plant_${props.img}`} className="plant-logo" />
                 </div>
                 <div>{props.title}</div>
                 <div>{props.lastWateredDate}</div>

@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
 import Input from './FormElements/Input';
-import LogoPicker from './LogoPicker';
+import LogoPicker from './UIElements/LogoPicker';
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH } from './util/validators';
+import { useImagesList } from './hooks/ImagesList-hook';
+
 
 import './AddEditPlant.css';
 
 const EditPlant = props => {
+
+    const logos = useImagesList('plant');
 
     //state controles visibility of logoPicker.jsx
     const [showLogoPicker, setShowLogoPicker] = useState(false);
@@ -19,6 +23,7 @@ const EditPlant = props => {
 
     return (
         <>
+            
             <div className='plants-list-item'>
 
                 <div className="add-edit-plant-logo" >
@@ -26,17 +31,17 @@ const EditPlant = props => {
                     {/* shows eaither logo picked in logoPicker.jsx or logo from PlantsList.jsx */}
                     <img
                         onClick={openLogoPickerHandler}
-                        src={`images/plant${selectedLogo || props.img}.svg`}
-                        alt={`img${props.title}`}
+                        src={`images/plant_${selectedLogo || props.img}.svg`}
+                        alt={`plant_${props.img}`}
                         className="plant-logo"
                     />
 
-                    
+
                     {showLogoPicker && (
                         <LogoPicker
                             show={showLogoPicker}
                             onCancel={closeLogoPickerHandler}
-                            availableLogos={props.logoList}
+                            availableLogos={logos}
                             selectedLogo={selectedLogo}
                             onSelect={(logo) => {
                                 setSelectedLogo(logo);
