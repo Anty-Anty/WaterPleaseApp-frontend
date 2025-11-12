@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Input from './FormElements/Input';
 import LogoPicker from './UIElements/LogoPicker';
+import CustomDateInput from './UIElements/CustomDateInput';
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH } from './util/validators';
 import { useImagesList } from './hooks/ImagesList-hook';
 
@@ -23,7 +24,7 @@ const EditPlant = props => {
 
     return (
         <>
-            
+
             <div className='plants-list-item'>
 
                 <div className="add-edit-plant-logo" >
@@ -51,7 +52,7 @@ const EditPlant = props => {
                     )}
                 </div>
 
-
+                {/* figure out if I need <div></div> here and adjust CSS*/}
                 <Input
                     id='plant'
                     element="input"
@@ -63,7 +64,17 @@ const EditPlant = props => {
                 // onInput={inputHandler}
                 />
 
-                <div>input</div>
+
+                <div>
+                    <CustomDateInput
+                        id="plantingDate"
+                        placeholder="Planting Date"
+                        validators={[VALIDATOR_REQUIRE()]}
+                        errorText="Please select a valid date."
+                    // onInput={inputHandler}
+                    />
+                </div>
+
                 <div>input</div>
 
 
