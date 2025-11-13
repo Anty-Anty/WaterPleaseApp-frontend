@@ -27,6 +27,7 @@ const EditPlant = props => {
 
             <div className='plants-list-item'>
 
+                {/* logo */}
                 <div className="add-edit-plant-logo" >
 
                     {/* shows eaither logo picked in logoPicker.jsx or logo from PlantsList.jsx */}
@@ -50,32 +51,37 @@ const EditPlant = props => {
                             }}
                         />
                     )}
+
                 </div>
 
-                {/* figure out if I need <div></div> here and adjust CSS*/}
-                <Input
-                    id='plant'
-                    element="input"
-                    name="toDoItem"
-                    placeholder="plant name"
-                    className='add-input'
-                    validators={[VALIDATOR_REQUIRE(), VALIDATOR_MAXLENGTH(50)]}
-                    errorText='Enter a valid plant name — 1 to 50 characters required.'
-                // onInput={inputHandler}
-                />
+                {/* plant name */}
+                <div>
+                    <Input
+                        id='plant'
+                        element="input"
+                        name="toDoItem"
+                        placeholder="plant name"
+                        className='add-input'
+                        validators={[VALIDATOR_REQUIRE(), VALIDATOR_MAXLENGTH(50)]}
+                        errorText='Enter a valid plant name — 1 to 50 characters required.'
+                    // onInput={inputHandler}
+                    />
+                </div>
 
-
+                {/* Last Watering Date */}
                 <div>
                     <CustomDateInput
-                        id="plantingDate"
-                        placeholder="Planting Date"
+                        id="lastWateredDate"
+                        placeholder="Last Watering Date"
+                        initialValue={props.lastWateredDate}
                         validators={[VALIDATOR_REQUIRE()]}
                         errorText="Please select a valid date."
                     // onInput={inputHandler}
                     />
                 </div>
 
-                <div>input</div>
+                {/* Next Watering Date */}
+                <div>Next Watering Date</div>
 
 
                 {/* <div className="button-stack">

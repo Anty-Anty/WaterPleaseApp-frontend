@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { validate } from "../util/validators";
-import "./CustomDateInput.css"; // uses your existing styles
+import "./CustomDateInput.css";
 
 const CustomDateInput = (props) => {
   const [selectedDate, setSelectedDate] = useState(props.initialValue || "");
