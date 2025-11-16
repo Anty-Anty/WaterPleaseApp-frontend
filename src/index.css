@@ -73,7 +73,7 @@ button:focus-visible {
 input {
   font-size: 0.9rem;
 
-  width: calc(100% - 5px); /* the reason why input was overflowing */
+  width: calc(100% - 14px); /* the reason why input was overflowing */
   height: 100%;
   padding: 4px 0px 4px 6px;
   background: #2e2e2e;

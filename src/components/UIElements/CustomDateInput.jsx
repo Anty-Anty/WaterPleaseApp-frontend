@@ -2,6 +2,17 @@ import React, { useState, useRef, useEffect } from "react";
 import { validate } from "../util/validators";
 import "./CustomDateInput.css";
 
+// --- Helper: safely format YYYY-MM-DD into "Mon 10" ---
+function formatDisplayDate(dateStr, locale = "en-US") {
+  if (!dateStr) return "";
+  const [y, m, d] = dateStr.split("-").map(Number);
+  const date = new Date(y, m - 1, d); // SAFE → no timezone shift
+  return date.toLocaleDateString(locale, {
+    month: "short",
+    day: "numeric",
+  });
+}
+
 const CustomDateInput = (props) => {
   const [selectedDate, setSelectedDate] = useState(props.initialValue || "");
   const [isTouched, setIsTouched] = useState(false);
@@ -9,21 +20,23 @@ const CustomDateInput = (props) => {
 
   const inputRef = useRef(null);
 
+  // Format for the visible div
   const formatted = selectedDate
-    ? new Date(selectedDate).toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-      })
+    ? formatDisplayDate(selectedDate)
     : props.placeholder || "Select date";
 
+  // When user selects date
   const handleChange = (e) => {
     const value = e.target.value;
     setSelectedDate(value);
+
     const valid = validate(value, props.validators);
     setIsValid(valid);
+
     props.onInput && props.onInput(props.id, value, valid);
   };
 
+  // When user clicks the visible div → open date picker
   const handleClick = () => {
     setIsTouched(true);
     if (inputRef.current?.showPicker) {
@@ -33,6 +46,7 @@ const CustomDateInput = (props) => {
     }
   };
 
+  // Sync with parent on load/updates
   useEffect(() => {
     if (props.initialValue) {
       setSelectedDate(props.initialValue);
@@ -41,7 +55,7 @@ const CustomDateInput = (props) => {
   }, [props.initialValue, props.initialValidity]);
 
   return (
-    <div className="input-wrapper">
+    <div className="input-wrapper-date-input">
       <div
         className={`input-like-div ${!isValid && isTouched ? "add-item-invalid" : ""}`}
         onClick={handleClick}
@@ -49,6 +63,7 @@ const CustomDateInput = (props) => {
         {formatted}
       </div>
 
+      {/* Hidden real date input */}
       <input
         ref={inputRef}
         type="date"
@@ -58,7 +73,10 @@ const CustomDateInput = (props) => {
         className="hidden-date-input"
       />
 
-      {!isValid && isTouched && <div className="err">{props.errorText}</div>}
+      {/* Validation error */}
+      {!isValid && isTouched && (
+        <div className="err">{props.errorText}</div>
+      )}
     </div>
   );
 };

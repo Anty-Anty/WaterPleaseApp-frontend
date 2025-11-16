@@ -29,19 +29,19 @@ const AddPlant = props => {
                     {/* shows eaither logo picked in logoPicker.jsx or logo from PlantsList.jsx */}
                     {
                         selectedLogo ?
-                        <img
-                            onClick={openLogoPickerHandler}
-                            src={`images/plant_${selectedLogo}.svg`}
-                            alt={`plant_${selectedLogo}`}
-                            className="plant-logo"
-                        />
-                        :
-                        <img
-                            onClick={openLogoPickerHandler}
-                            src={`images/plant_bw.svg`}
-                            alt={`plant_bw`}
-                            className="plant-logo"
-                        />
+                            <img
+                                onClick={openLogoPickerHandler}
+                                src={`images/plant_${selectedLogo}.svg`}
+                                alt={`plant_${selectedLogo}`}
+                                className="plant-logo"
+                            />
+                            :
+                            <img
+                                onClick={openLogoPickerHandler}
+                                src={`images/plant_bw.svg`}
+                                alt={`plant_bw`}
+                                className="plant-logo"
+                            />
                     }
 
 
@@ -58,17 +58,19 @@ const AddPlant = props => {
                         />
                     )}
                 </div>
-
-                <Input
-                    id='plant'
-                    element="input"
-                    name="toDoItem"
-                    placeholder="enter plant name"
-                    className='add-input'
-                    validators={[VALIDATOR_REQUIRE(), VALIDATOR_MAXLENGTH(50)]}
-                    errorText='Enter a valid plant name — 1 to 50 characters required.'
-                // onInput={inputHandler}
-                />
+                
+                <div>
+                    <Input
+                        id='plant'
+                        element="input"
+                        name="toDoItem"
+                        placeholder="enter plant name"
+                        className='add-input'
+                        validators={[VALIDATOR_REQUIRE(), VALIDATOR_MAXLENGTH(50)]}
+                        errorText='Enter a valid plant name — 1 to 50 characters required.'
+                    // onInput={inputHandler}
+                    />
+                </div>
 
                 <div>input</div>
                 <div>input</div>

@@ -4,7 +4,19 @@ import './Plant.css';
 
 const Plant = props => {
 
+    //identifies which plant to show in edit mode
     const isEditing = props.editingPlantId === props.id;
+
+    // --- Helper: safely format YYYY-MM-DD into "Mon 10" ---
+    function formatDisplayDate(dateStr, locale = "en-US") {
+        if (!dateStr) return "";
+        const [y, m, d] = dateStr.split("-").map(Number);
+        const date = new Date(y, m - 1, d); // SAFE → no timezone shift
+        return date.toLocaleDateString(locale, {
+            month: "short",
+            day: "numeric",
+        });
+    }
 
     return (
         <>
@@ -14,8 +26,8 @@ const Plant = props => {
                     <img src={`images/plant_${props.img}.svg`} alt={`plant_${props.img}`} className="plant-logo" />
                 </div>
                 <div>{props.title}</div>
-                <div>{props.lastWateredDate}</div>
-                <div>{props.nextWateredDate}</div>
+                <div>{formatDisplayDate(props.lastWateredDate)}</div>
+                <div>{formatDisplayDate(props.nextWateredDate)}</div>
 
 
                 {/* <div className="button-stack">

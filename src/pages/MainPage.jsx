@@ -13,40 +13,40 @@ const DUMMY_PLANTS_LIST = [
         id: "1",
         img: "1",
         title: "Aloe Vera",
-        lastWateredDate: "Sep 18",
-        nextWateredDate: "Sep 19",
+        lastWateredDate: "2025-09-18",
+        nextWateredDate: "2025-09-19",
         mapPosition: "h1"
     },
     {
         id: "2",
         img: "2",
         title: "Palm",
-        lastWateredDate: "Sep 18",
-        nextWateredDate: "Sep 19",
+        lastWateredDate: "2025-09-18",
+        nextWateredDate: "2025-09-19",
         mapPosition: "h2"
     },
     {
         id: "3",
         img: "3",
         title: "Palm",
-        lastWateredDate: "Sep 18",
-        nextWateredDate: "Sep 19",
+        lastWateredDate: "2025-09-18",
+        nextWateredDate: "2025-09-19",
         mapPosition: "h2"
     },
     {
         id: "4",
         img: "4",
         title: "Palm",
-        lastWateredDate: "Sep 18",
-        nextWateredDate: "Sep 19",
+        lastWateredDate: "2025-09-18",
+        nextWateredDate: "2025-09-19",
         mapPosition: "h2"
     },
     {
         id: "5",
         img: "2",
         title: "Palm",
-        lastWateredDate: "Sep 18",
-        nextWateredDate: "Sep 19",
+        lastWateredDate: "2025-09-18",
+        nextWateredDate: "2025-09-19",
         mapPosition: "h2"
     }
 

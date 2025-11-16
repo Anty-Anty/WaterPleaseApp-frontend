@@ -32,6 +32,8 @@ const PlantsList = props => {
                             img={plant.img}
                             title={plant.title}
                             logoList={props.plants}
+                            lastWateredDate={plant.lastWateredDate}
+                            nextWateredDate={plant.nextWateredDate}
                             // plant={plant}
                             closeEditModalHandler={() => props.setEditingPlantId(null)}
                         />

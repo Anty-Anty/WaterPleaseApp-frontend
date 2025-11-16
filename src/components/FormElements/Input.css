@@ -8,7 +8,7 @@
   height: 50%;
 
   align-self: start;
-  margin-top: 5px;
+  margin-top: 3px;
   
   position: relative;
   display: inline-block;
@@ -22,10 +22,10 @@
   /* directly below input */
   left: -35px;
   transform: translateY(4px);
-  background-color: rgba(244, 67, 54, 0.3);
+  background-color: rgb(94, 26, 21);
   /* red error bubble */
   color: rgba(255, 255, 255, 0.65);
-  margin-top: 10px;
+  margin-top: 3px;
   padding: 1px 8px;
   border-radius: 4px;
   font-size: 0.8rem;
