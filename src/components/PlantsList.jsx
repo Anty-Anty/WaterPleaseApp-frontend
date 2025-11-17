@@ -30,6 +30,7 @@ const PlantsList = props => {
                         <EditPlant
                             key={plant.id}
                             img={plant.img}
+                            wLevel={plant.wLevel}
                             title={plant.title}
                             logoList={props.plants}
                             lastWateredDate={plant.lastWateredDate}
@@ -44,6 +45,7 @@ const PlantsList = props => {
                         key={plant.id}
                         id={plant.id}
                         img={plant.img}
+                        wLevel={plant.wLevel}
                         title={plant.title}
                         lastWateredDate={plant.lastWateredDate}
                         nextWateredDate={plant.nextWateredDate}

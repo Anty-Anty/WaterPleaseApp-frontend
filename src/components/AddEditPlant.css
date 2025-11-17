@@ -3,7 +3,8 @@
     position: relative;
 }
 
-.add-edit-plant-logo .plant-logo {
+.add-edit-plant-logo .plant-logo,
+.add-edit-plant-logo .wLevel-logo {
     cursor: pointer;
 }
 

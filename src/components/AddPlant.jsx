@@ -10,20 +10,28 @@ import './AddEditPlant.css';
 const AddPlant = props => {
 
     const logos = useImagesList('plant');
+    const wLogos = useImagesList('water');
 
     //state controles visibility of logoPicker.jsx
     const [showLogoPicker, setShowLogoPicker] = useState(false);
     const openLogoPickerHandler = () => setShowLogoPicker(true);
     const closeLogoPickerHandler = () => setShowLogoPicker(false);
 
+    //state controles visibility of logoPicker.jsx
+    const [showWLogoPicker, setShowWLogoPicker] = useState(false);
+    const openWLogoPickerHandler = () => setShowWLogoPicker(true);
+    const closeWLogoPickerHandler = () => setShowWLogoPicker(false);
+
 
     // state stores eaither logo picked in logoPicker.jsx or logo from PlantsList.jsx 
     const [selectedLogo, setSelectedLogo] = useState(props.logo || null);
 
+    const [selectedWLogo, setSelectedWLogo] = useState(props.wLogo || null);
+
     return (
         <>
             <div className='plants-list-item'>
-
+                {/* plant logo */}
                 <div className="add-edit-plant-logo">
 
                     {/* shows eaither logo picked in logoPicker.jsx or logo from PlantsList.jsx */}
@@ -50,6 +58,7 @@ const AddPlant = props => {
                             show={showLogoPicker}
                             onCancel={closeLogoPickerHandler}
                             availableLogos={logos}
+                            basename={"plant"}
                             selectedLogo={selectedLogo}
                             onSelect={(logo) => {
                                 setSelectedLogo(logo);
@@ -58,7 +67,44 @@ const AddPlant = props => {
                         />
                     )}
                 </div>
-                <div></div>
+                {/* water level logo*/}
+                <div>
+                    <div className="add-edit-plant-logo">
+                        {
+                            selectedWLogo ?
+                                <img
+                                    onClick={openWLogoPickerHandler}
+                                    src={`images/water_${selectedWLogo}.svg`}
+                                    alt={`water_${selectedWLogo}`}
+                                    className="wLevel-logo"
+                                />
+                                :
+                                <img
+                                    onClick={openWLogoPickerHandler}
+                                    src={`images/water_bw.svg`}
+                                    alt={`water_${props.wLevel}`}
+                                    className="wLevel-logo"
+                                />
+                        }
+
+
+                        {showWLogoPicker && (
+                            <LogoPicker
+                                show={showWLogoPicker}
+                                onCancel={closeWLogoPickerHandler}
+                                availableLogos={wLogos}
+                                basename={"water"}
+                                selectedLogo={selectedWLogo}
+                                onSelect={(wLogo) => {
+                                    setSelectedWLogo(wLogo);
+                                    setShowWLogoPicker(false);
+                                }}
+                            />
+                        )}
+
+                    </div>
+                </div>
+                {/* plant name */}
                 <div>
                     <Input
                         id='plant'

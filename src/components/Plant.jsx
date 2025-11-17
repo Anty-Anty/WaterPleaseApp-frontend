@@ -22,10 +22,12 @@ const Plant = props => {
         <>
             <li className='plants-list-item'>
 
-                <div className="add-edit-plant-logo">
+                <div className="container-plant-logo">
                     <img src={`images/plant_${props.img}.svg`} alt={`plant_${props.img}`} className="plant-logo" />
                 </div>
-                <div></div>
+                <div className="container-plant-logo">
+                    <img src={`images/water_${props.wLevel}.svg`} alt={`plant_${props.wLevel}`} className="wLevel-logo" />
+                </div>
                 <div>{props.title}</div>
                 <div>{formatDisplayDate(props.lastWateredDate)}</div>
                 <div>{formatDisplayDate(props.nextWateredDate)}</div>

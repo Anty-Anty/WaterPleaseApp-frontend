@@ -41,7 +41,7 @@
   display: grid;
 
   grid-template-rows: 40px;
-  grid-template-columns: 12.5% 12.5% 30% 17.5% 17.5% 10%;
+  grid-template-columns: 11% 11% 33% 17.5% 17.5% 10%;
   align-items: center;
 }
 
@@ -53,6 +53,11 @@
 .plant-logo {
   align-self: center;
   height: 40px;
+}
+
+.wLevel-logo {
+  align-self: center;
+  height: 25px;
 }
 
 .add-plant-btn {

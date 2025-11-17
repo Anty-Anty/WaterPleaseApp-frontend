@@ -16,7 +16,7 @@ const LogoPicker = props => {
                         onClick={() => {props.onSelect(plant.img);}}
                     >
                         <img
-                            src={`images/plant_${plant.img}.svg`}
+                            src={`images/${props.basename}_${plant.img}.svg`}
                             alt={`plant_${plant.img}`}
                             className="plant-logo"
                         />

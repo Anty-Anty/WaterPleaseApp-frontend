@@ -1,3 +1,8 @@
+.container-plant-logo {
+    display: flex;
+    position: relative;
+}
+
 .plant-button-stack{
     display:none;
 }

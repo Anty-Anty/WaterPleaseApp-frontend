@@ -4,7 +4,7 @@ import Input from './FormElements/Input';
 import LogoPicker from './UIElements/LogoPicker';
 import CustomDateInput from './UIElements/CustomDateInput';
 import NextWaterDateInput from './UIElements/NextWaterDateInput';
-import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH, VALIDATOR_MAX_TODAY, VALIDATOR_MIN_TOMORROW,VALIDATOR_MIN } from './util/validators';
+import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH, VALIDATOR_MAX_TODAY, VALIDATOR_MIN_TOMORROW, VALIDATOR_MIN } from './util/validators';
 import { useImagesList } from './hooks/ImagesList-hook';
 
 
@@ -13,22 +13,30 @@ import './AddEditPlant.css';
 const EditPlant = props => {
 
     const logos = useImagesList('plant');
+    const wLogos = useImagesList('water');
 
     //state controles visibility of logoPicker.jsx
     const [showLogoPicker, setShowLogoPicker] = useState(false);
     const openLogoPickerHandler = () => setShowLogoPicker(true);
     const closeLogoPickerHandler = () => setShowLogoPicker(false);
 
+    //state controles visibility of logoPicker.jsx
+    const [showWLogoPicker, setShowWLogoPicker] = useState(false);
+    const openWLogoPickerHandler = () => setShowWLogoPicker(true);
+    const closeWLogoPickerHandler = () => setShowWLogoPicker(false);
+
 
     // state stores eaither logo picked in logoPicker.jsx or logo from PlantsList.jsx 
     const [selectedLogo, setSelectedLogo] = useState(props.logo || null);
+
+    const [selectedWLogo, setSelectedWLogo] = useState(props.wLogo || null);
 
     return (
         <>
 
             <div className='plants-list-item'>
 
-                {/* logo */}
+                {/* plant logo */}
                 <div className="add-edit-plant-logo" >
 
                     {/* shows eaither logo picked in logoPicker.jsx or logo from PlantsList.jsx */}
@@ -45,6 +53,7 @@ const EditPlant = props => {
                             show={showLogoPicker}
                             onCancel={closeLogoPickerHandler}
                             availableLogos={logos}
+                            basename={"plant"}
                             selectedLogo={selectedLogo}
                             onSelect={(logo) => {
                                 setSelectedLogo(logo);
@@ -54,7 +63,34 @@ const EditPlant = props => {
                     )}
 
                 </div>
-                <div></div>
+                {/* water level logo*/}
+                <div>
+                    <div className="add-edit-plant-logo">
+
+                        <img
+                            onClick={openWLogoPickerHandler}
+                            src={`images/water_${selectedWLogo || props.wLevel}.svg`}
+                            alt={`water_${selectedWLogo || props.wLevel}`}
+                            className="wLevel-logo"
+                        />
+
+
+                        {showWLogoPicker && (
+                            <LogoPicker
+                                show={showWLogoPicker}
+                                onCancel={closeWLogoPickerHandler}
+                                availableLogos={wLogos}
+                                basename={"water"}
+                                selectedLogo={selectedWLogo}
+                                onSelect={(wLogo) => {
+                                    setSelectedWLogo(wLogo);
+                                    setShowWLogoPicker(false);
+                                }}
+                            />
+                        )}
+
+                    </div>
+                </div>
 
                 {/* plant name */}
                 <div>
@@ -89,7 +125,7 @@ const EditPlant = props => {
                         lastWateredDate={props.lastWateredDate}
                         validators={[VALIDATOR_REQUIRE(), VALIDATOR_MIN(1)]}
                         errorText="Please enter at least 1 day."
-                        // onInput={props.inputHandler} 
+                    // onInput={props.inputHandler} 
                     />
                 </div>
 
