@@ -13,10 +13,11 @@
   align-items: center;
   justify-content: flex-start;
   padding: 0rem 0.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #2e2e2e;
+  border: 1px solid #5c5b5b;
   cursor: pointer;
   font-size: 0.9rem;
+  color: #696969;
 
   min-height: 1.75rem;
 }

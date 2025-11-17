@@ -112,6 +112,7 @@ const MainPage = props => {
                         <div className="plants-list-item">
                             <div></div>
                             <div></div>
+                            <div></div>
                             <div>last</div>
                             <div>next</div>
                             <div></div>

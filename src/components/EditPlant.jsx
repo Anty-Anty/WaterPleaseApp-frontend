@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 import Input from './FormElements/Input';
 import LogoPicker from './UIElements/LogoPicker';
 import CustomDateInput from './UIElements/CustomDateInput';
-import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH, VALIDATOR_MAX_TODAY, VALIDATOR_MIN_TOMORROW } from './util/validators';
+import NextWaterDateInput from './UIElements/NextWaterDateInput';
+import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH, VALIDATOR_MAX_TODAY, VALIDATOR_MIN_TOMORROW,VALIDATOR_MIN } from './util/validators';
 import { useImagesList } from './hooks/ImagesList-hook';
-import { useNextWaterDate } from "./hooks/useNextWaterDate";
 
 
 import './AddEditPlant.css';
@@ -22,9 +22,6 @@ const EditPlant = props => {
 
     // state stores eaither logo picked in logoPicker.jsx or logo from PlantsList.jsx 
     const [selectedLogo, setSelectedLogo] = useState(props.logo || null);
-
-    // hook to calculate next watering date
-    const { days, setDays, nextDate } = useNextWaterDate(props.lastWateredDate);
 
     return (
         <>
@@ -57,6 +54,7 @@ const EditPlant = props => {
                     )}
 
                 </div>
+                <div></div>
 
                 {/* plant name */}
                 <div>
@@ -86,16 +84,13 @@ const EditPlant = props => {
 
                 {/* Next Watering Date */}
                 <div>
-                    <div className="input-wrapper">
-                        <input
-                            type="number"
-                            placeholder="days"
-                            value={days}
-                            onChange={(e) => setDays(e.target.value)}
-                        />
-                        {/* nextDate should go to DataBase*/}
-                        {nextDate && <div>Next watering: {nextDate}</div>}
-                    </div>
+                    <NextWaterDateInput
+                        id="nextWaterDate"
+                        lastWateredDate={props.lastWateredDate}
+                        validators={[VALIDATOR_REQUIRE(), VALIDATOR_MIN(1)]}
+                        errorText="Please enter at least 1 day."
+                        // onInput={props.inputHandler} 
+                    />
                 </div>
 
 

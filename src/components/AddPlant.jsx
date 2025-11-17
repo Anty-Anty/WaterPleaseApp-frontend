@@ -58,7 +58,7 @@ const AddPlant = props => {
                         />
                     )}
                 </div>
-                
+                <div></div>
                 <div>
                     <Input
                         id='plant'

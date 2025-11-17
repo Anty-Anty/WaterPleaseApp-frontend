@@ -25,6 +25,7 @@ const Plant = props => {
                 <div className="add-edit-plant-logo">
                     <img src={`images/plant_${props.img}.svg`} alt={`plant_${props.img}`} className="plant-logo" />
                 </div>
+                <div></div>
                 <div>{props.title}</div>
                 <div>{formatDisplayDate(props.lastWateredDate)}</div>
                 <div>{formatDisplayDate(props.nextWateredDate)}</div>
