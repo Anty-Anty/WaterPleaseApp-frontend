@@ -1,9 +1,21 @@
+import React, { useState, useEffect } from "react";
+import { validate } from "../util/validators";
+
+function addDays(dateStr, days) {
+    if (!dateStr) return "";
+    const [y, m, d] = dateStr.split("-").map(Number);
+    const base = new Date(y, m - 1, d);
+    base.setDate(base.getDate() + Number(days));
+    return base.toISOString().split("T")[0];
+}
+
 const NextWaterDateInput = (props) => {
     const [days, setDays] = useState(props.initialDays || "");
     const [nextDate, setNextDate] = useState("");
     const [isValid, setIsValid] = useState(false);
     const [isTouched, setIsTouched] = useState(false);
 
+    // Calculate next watering date, but do NOT overwrite isValid
     useEffect(() => {
         if (!props.lastWateredDate || days === "") {
             setNextDate("");
@@ -22,7 +34,7 @@ const NextWaterDateInput = (props) => {
     }, [days, props.lastWateredDate]);
 
     return (
-        <div className="next-water-wrapper">
+        <div className="input-wrapper">
             <input
                 type="number"
                 min="1"
@@ -48,3 +60,5 @@ const NextWaterDateInput = (props) => {
         </div>
     );
 };
+
+export default NextWaterDateInput;
