@@ -5,6 +5,7 @@ import LogoPicker from './UIElements/LogoPicker';
 import CustomDateInput from './UIElements/CustomDateInput';
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH, VALIDATOR_MAX_TODAY, VALIDATOR_MIN_TOMORROW } from './util/validators';
 import { useImagesList } from './hooks/ImagesList-hook';
+import { useNextWaterDate } from "./hooks/useNextWaterDate";
 
 
 import './AddEditPlant.css';
@@ -21,6 +22,9 @@ const EditPlant = props => {
 
     // state stores eaither logo picked in logoPicker.jsx or logo from PlantsList.jsx 
     const [selectedLogo, setSelectedLogo] = useState(props.logo || null);
+
+    // hook to calculate next watering date
+    const { days, setDays, nextDate } = useNextWaterDate(props.lastWateredDate);
 
     return (
         <>
@@ -82,14 +86,16 @@ const EditPlant = props => {
 
                 {/* Next Watering Date */}
                 <div>
-                    <CustomDateInput
-                        id="nextWateredDate"
-                        placeholder="Next Watering Date"
-                        initialValue={props.nextWateredDate}
-                        validators={[VALIDATOR_MIN_TOMORROW()]}
-                        errorText="Please select a valid date."
-                    // onInput={inputHandler}
-                    />
+                    <div className="input-wrapper">
+                        <input
+                            type="number"
+                            placeholder="days"
+                            value={days}
+                            onChange={(e) => setDays(e.target.value)}
+                        />
+                        {/* nextDate should go to DataBase*/}
+                        {nextDate && <div>Next watering: {nextDate}</div>}
+                    </div>
                 </div>
 
 
