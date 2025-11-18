@@ -3,7 +3,9 @@
 
     margin-top: 3rem;
     display: grid;
-    grid-template-columns: repeat(5, 50px);
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    max-width: calc(50px * 5 + 0.5rem * 4);
+    /* limit to 5 columns visually */
     gap: 0.5rem;
     padding: 0.5rem;
     background: rgba(77, 77, 77, 0.9);
@@ -12,13 +14,13 @@
 }
 
 .logo-picker::before {
-  content: '';
-  position: absolute;
-  top: -14px;
-  left: 10px;
-  border-width: 7px;
-  border-style: solid;
-  border-color: transparent transparent rgba(77, 77, 77, 0.9) transparent;
+    content: '';
+    position: absolute;
+    top: -14px;
+    left: 10px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: transparent transparent rgba(77, 77, 77, 0.9) transparent;
 }
 
 .logo-option {
