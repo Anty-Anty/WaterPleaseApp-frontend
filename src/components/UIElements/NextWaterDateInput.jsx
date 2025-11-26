@@ -1,12 +1,22 @@
+// This component lets the user enter the number of days until the next watering.
+// Based on the lastWateredDate prop, it calculates and displays the next watering date
+// (formatted like "Sep 15"), validates the input, and reports the computed value
+// to the parent through onInput().
+
 import React, { useState, useEffect } from "react";
 import { validate } from "../util/validators";
 
 function addDays(dateStr, days) {
     if (!dateStr) return "";
     const [y, m, d] = dateStr.split("-").map(Number);
-    const base = new Date(y, m - 1, d);
+    const base = new Date(y, m - 1, d); // safe construction, no TZ issues
     base.setDate(base.getDate() + Number(days));
-    return base.toISOString().split("T")[0];
+
+    // Format as "Sep 15"
+    return base.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+    });
 }
 
 const NextWaterDateInput = (props) => {

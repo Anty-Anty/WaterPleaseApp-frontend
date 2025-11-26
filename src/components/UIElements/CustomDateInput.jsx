@@ -1,3 +1,20 @@
+/**
+ * CustomDateInput
+ *
+ * A custom-styled date input that replaces the native browser UI.
+ * The visible div acts as the clickable date field, and the hidden
+ * <input type="date"> handles the actual date picking.
+ *
+ * Features:
+ * - Displays the selected date in a formatted form (e.g., "Feb 12").
+ * - Runs validation using provided validators.
+ * - Notifies parent components using `onInput(id, value, isValid)`.
+ * - Shows an error message when invalid and touched.
+ * - Syncs internal state when `initialValue` or `initialValidity` change.
+ *
+ * Behaves like a fully controlled input but with a custom appearance.
+ */
+
 import React, { useState, useRef, useEffect } from "react";
 import { validate } from "../util/validators";
 import "./CustomDateInput.css";
