@@ -24,7 +24,6 @@ function addDays(dateStr, days) {
 const NextWaterDateInput = (props) => {
     const [days, setDays] = useState(props.initialDays || "");
     const [nextDate, setNextDate] = useState("");
-    console.log(nextDate)
     const [isValid, setIsValid] = useState(false);
     const [isTouched, setIsTouched] = useState(false);
 

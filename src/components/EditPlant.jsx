@@ -31,6 +31,15 @@ const EditPlant = props => {
 
     const [selectedWLogo, setSelectedWLogo] = useState(props.wLogo || null);
 
+    // state stores lastWateredDated initially recieved from DataBase or everytime its updated in CustomDateInput
+    const [lastWateredDate, setLastWateredDate] = useState(props.lastWateredDate || "");
+
+    const dateInputHandler = (id, value, isValid) => {
+        if (id === "lastWateredDate") {
+            setLastWateredDate(value);
+        }
+    };
+
     return (
         <>
 
@@ -111,10 +120,10 @@ const EditPlant = props => {
                     <CustomDateInput
                         id="lastWateredDate"
                         placeholder="Last Watering Date"
-                        initialValue={props.lastWateredDate}
+                        initialValue={lastWateredDate}
                         validators={[VALIDATOR_MAX_TODAY()]}
                         errorText="Please select a valid date."
-                    // onInput={inputHandler}
+                        onInput={dateInputHandler}
                     />
                 </div>
 
@@ -123,8 +132,8 @@ const EditPlant = props => {
                     <NextWaterDateInput
                         id="nextWaterDate"
                         placeholder="Select date"
-                        nextWateredDate = {props.nextWateredDate}
-                        lastWateredDate={props.lastWateredDate}
+                        nextWateredDate={props.nextWateredDate}
+                        lastWateredDate={lastWateredDate}
                         validators={[VALIDATOR_REQUIRE(), VALIDATOR_MIN(1)]}
                         errorText="Please enter at least 1 day."
                     // onInput={props.inputHandler} 
