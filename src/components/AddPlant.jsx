@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 
 import Input from './FormElements/Input';
 import LogoPicker from './UIElements/LogoPicker';
-import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH } from './util/validators';
+import CustomDateInput from './UIElements/CustomDateInput';
+import NextWaterDateInput from './UIElements/NextWaterDateInput';
+import { VALIDATOR_REQUIRE, VALIDATOR_MAXLENGTH, VALIDATOR_MAX_TODAY, VALIDATOR_MIN } from './util/validators';
 import { useImagesList } from './hooks/ImagesList-hook';
 
 import './AddEditPlant.css';
@@ -118,8 +120,28 @@ const AddPlant = props => {
                     />
                 </div>
 
-                <div>input</div>
-                <div>input</div>
+                {/* Last Watering Date */}
+                <div>
+                    <CustomDateInput
+                        id="lastWateredDate"
+                        placeholder="Select date"
+                        initialValue={props.lastWateredDate}
+                        validators={[VALIDATOR_MAX_TODAY()]}
+                        errorText="Please select a valid date."
+                    // onInput={inputHandler}
+                    />
+                </div>
+
+                {/* Next Watering Date */}
+                <div>
+                    <NextWaterDateInput
+                        id="nextWaterDate"
+                        placeholder="Select date"
+                        validators={[VALIDATOR_REQUIRE(), VALIDATOR_MIN(1)]}
+                        errorText="Please enter at least 1 day."
+                    // onInput={props.inputHandler} 
+                    />
+                </div>
 
 
                 {/* <div className="button-stack">

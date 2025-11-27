@@ -4,7 +4,7 @@ import Input from './FormElements/Input';
 import LogoPicker from './UIElements/LogoPicker';
 import CustomDateInput from './UIElements/CustomDateInput';
 import NextWaterDateInput from './UIElements/NextWaterDateInput';
-import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH, VALIDATOR_MAX_TODAY, VALIDATOR_MIN_TOMORROW, VALIDATOR_MIN } from './util/validators';
+import { VALIDATOR_REQUIRE, VALIDATOR_MAXLENGTH, VALIDATOR_MAX_TODAY, VALIDATOR_MIN } from './util/validators';
 import { useImagesList } from './hooks/ImagesList-hook';
 
 
@@ -122,6 +122,8 @@ const EditPlant = props => {
                 <div>
                     <NextWaterDateInput
                         id="nextWaterDate"
+                        placeholder="Select date"
+                        nextWateredDate = {props.nextWateredDate}
                         lastWateredDate={props.lastWateredDate}
                         validators={[VALIDATOR_REQUIRE(), VALIDATOR_MIN(1)]}
                         errorText="Please enter at least 1 day."

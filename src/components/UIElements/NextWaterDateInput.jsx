@@ -5,6 +5,17 @@
 
 import React, { useState, useEffect } from "react";
 import { validate } from "../util/validators";
+import "./NextWaterDateInput.css";
+
+function formatDisplayDate(dateStr, locale = "en-US") {
+    if (!dateStr) return "";
+    const [y, m, d] = dateStr.split("-").map(Number);
+    const date = new Date(y, m - 1, d); // SAFE → no timezone shift
+    return date.toLocaleDateString(locale, {
+        month: "short",
+        day: "numeric",
+    });
+}
 
 function addDays(dateStr, days) {
     if (!dateStr) return "";
@@ -22,6 +33,7 @@ function addDays(dateStr, days) {
 const NextWaterDateInput = (props) => {
     const [days, setDays] = useState(props.initialDays || "");
     const [nextDate, setNextDate] = useState("");
+    console.log(nextDate)
     const [isValid, setIsValid] = useState(false);
     const [isTouched, setIsTouched] = useState(false);
 
@@ -48,7 +60,9 @@ const NextWaterDateInput = (props) => {
             <input
                 type="number"
                 min="1"
-                placeholder="Days until next watering"
+                placeholder={
+                    props.nextWateredDate ? formatDisplayDate(props.nextWateredDate) : props.placeholder
+                }
                 className={`number-input ${!isValid && isTouched ? "add-item-invalid" : ""}`}
                 value={days}
                 onChange={(e) => setDays(e.target.value)}
@@ -58,9 +72,9 @@ const NextWaterDateInput = (props) => {
                 }}
             />
 
-            {nextDate && isValid && (
-                <div className="next-water-result">
-                    Next watering: <strong>{nextDate}</strong>
+            {nextDate && (
+                <div className="next-date-ghost">
+                    {nextDate}
                 </div>
             )}
 

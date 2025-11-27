@@ -1,0 +1,10 @@
+.next-date-ghost {
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #888;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
