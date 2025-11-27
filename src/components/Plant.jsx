@@ -1,22 +1,12 @@
 import React, { useState } from 'react';
 
+import { formatDisplayDate } from "../components/util/formatDisplayDate";
 import './Plant.css';
 
 const Plant = props => {
 
     //identifies which plant to show in edit mode
     const isEditing = props.editingPlantId === props.id;
-
-    // --- Helper: safely format YYYY-MM-DD into "Mon 10" ---
-    function formatDisplayDate(dateStr, locale = "en-US") {
-        if (!dateStr) return "";
-        const [y, m, d] = dateStr.split("-").map(Number);
-        const date = new Date(y, m - 1, d); // SAFE → no timezone shift
-        return date.toLocaleDateString(locale, {
-            month: "short",
-            day: "numeric",
-        });
-    }
 
     return (
         <>

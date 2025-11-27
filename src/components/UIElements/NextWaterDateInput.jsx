@@ -5,17 +5,8 @@
 
 import React, { useState, useEffect } from "react";
 import { validate } from "../util/validators";
+import { formatDisplayDate } from "../util/formatDisplayDate";
 import "./NextWaterDateInput.css";
-
-function formatDisplayDate(dateStr, locale = "en-US") {
-    if (!dateStr) return "";
-    const [y, m, d] = dateStr.split("-").map(Number);
-    const date = new Date(y, m - 1, d); // SAFE → no timezone shift
-    return date.toLocaleDateString(locale, {
-        month: "short",
-        day: "numeric",
-    });
-}
 
 function addDays(dateStr, days) {
     if (!dateStr) return "";
