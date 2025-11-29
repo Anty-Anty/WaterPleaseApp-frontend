@@ -7,6 +7,7 @@ import Modal from '../components/UIElements/Modal';
 import AddPlant from "../components/AddPlant";
 
 import "./MainPage.css";
+import EditMap from "../components/EditMap";
 
 const DUMMY_PLANTS_LIST = [
     {
@@ -105,6 +106,17 @@ const MainPage = props => {
         setShowDeleteModal(false);
     };
 
+    // EDIT MAP TOGGLE
+    const [showEditMap, setShowEditMap] = useState(false);
+
+    const showEditMapHandler = () => {
+        setShowEditMap(true);
+    };
+
+    const closeEditMapHandler = () => {
+        setShowEditMap(false);
+    };
+
     //JSX
     return (
         <>
@@ -166,7 +178,7 @@ const MainPage = props => {
 
                 {/* MAP */}
                 <div className='map'>
-                    <Map />
+                    {showEditMap ? <EditMap/> : <Map />}
                 </div>
 
             </div>
