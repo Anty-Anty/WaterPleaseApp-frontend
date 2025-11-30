@@ -11,7 +11,7 @@ import EditMap from "../components/EditMap";
 
 const DUMMY_MAP = [
     {
-        selectedSquares: [20,21,28,29]
+        selectedSquares: [20, 21, 28, 29]
     }
 ]
 
@@ -112,20 +112,46 @@ const MainPage = props => {
         setShowDeleteModal(false);
     };
 
-    // EDIT MAP TOGGLE
+    // MAP
+    // map state toggle
     const [showEditMap, setShowEditMap] = useState(false);
 
     const showEditMapHandler = () => {
+        setTempSelectedSquares(selectedSquares); // copy current map
         setShowEditMap(true);
     };
 
-    const closeEditMapHandler = () => {
+    // const closeEditMapHandler = () => {
+    //     setShowEditMap(false);
+    // };
+
+    // main map state
+    const [selectedSquares, setSelectedSquares] = useState(DUMMY_MAP[0].selectedSquares);
+
+    // local temp editing state
+    const [tempSelectedSquares, setTempSelectedSquares] = useState(selectedSquares);
+
+    const squareClickHandler = (squareId) => {
+        setTempSelectedSquares(prev =>
+            prev.includes(squareId)
+                ? prev.filter(id => id !== squareId)   // unselect
+                : [...prev, squareId]                  // select
+        );
+    };
+
+    const mapSaveHandler = () => {
+        setSelectedSquares(tempSelectedSquares);
         setShowEditMap(false);
     };
 
-    // MAP STATE
+    const mapCancelHandler = () => {
+        setTempSelectedSquares(selectedSquares); // reset to original
+        setShowEditMap(false);
+    };
 
-    const [selectedSquares, setSelectedSquares] = useState(DUMMY_MAP[0].selectedSquares);
+    const mapResetHandler = () => {
+        setTempSelectedSquares([]);
+    };
 
 
     //JSX
@@ -191,7 +217,11 @@ const MainPage = props => {
                 <div className='map'>
                     {showEditMap ?
                         <EditMap
-                            closeEditMapHandler={closeEditMapHandler}
+                            selectedSquares={tempSelectedSquares}
+                            squareClickHandler={squareClickHandler}
+                            mapSaveHandler={mapSaveHandler}
+                            mapCancelHandler={mapCancelHandler}
+                            mapResetHandler={mapResetHandler}
                         />
                         :
                         <Map
