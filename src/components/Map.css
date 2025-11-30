@@ -35,8 +35,10 @@
   /* background-color: bisque; */
   overflow: hidden;
   /* width: 30px; */
+}
 
-
+.map-container-item.selected {
+  background-color: rgb(53, 53, 53);
 }
 
 .last-in-row {
@@ -65,6 +67,12 @@
     padding: 0;
     width: 50%;
     font-size: 1.4em;
+}
+
+.map-btn>*:hover {
+    border-color: transparent;
+    color: rgba(255, 255, 255, 0.45);
+
 }
 
 .map-container:hover .map-btn {

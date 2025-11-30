@@ -9,11 +9,17 @@ import AddPlant from "../components/AddPlant";
 import "./MainPage.css";
 import EditMap from "../components/EditMap";
 
+const DUMMY_MAP = [
+    {
+        selectedSquares: [20,21,28,29]
+    }
+]
+
 const DUMMY_PLANTS_LIST = [
     {
         id: "1",
         img: "1",
-        wLevel:"1",
+        wLevel: "1",
         title: "Aloe Vera",
         lastWateredDate: "2025-09-18",
         nextWateredDate: "2025-09-19",
@@ -22,7 +28,7 @@ const DUMMY_PLANTS_LIST = [
     {
         id: "2",
         img: "2",
-        wLevel:"2",
+        wLevel: "2",
         title: "Palm",
         lastWateredDate: "2025-09-18",
         nextWateredDate: "2025-09-19",
@@ -31,7 +37,7 @@ const DUMMY_PLANTS_LIST = [
     {
         id: "3",
         img: "3",
-        wLevel:"3",
+        wLevel: "3",
         title: "Palm",
         lastWateredDate: "2025-09-18",
         nextWateredDate: "2025-09-19",
@@ -40,7 +46,7 @@ const DUMMY_PLANTS_LIST = [
     {
         id: "4",
         img: "4",
-        wLevel:"1",
+        wLevel: "1",
         title: "Palm",
         lastWateredDate: "2025-09-18",
         nextWateredDate: "2025-09-19",
@@ -49,7 +55,7 @@ const DUMMY_PLANTS_LIST = [
     {
         id: "5",
         img: "2",
-        wLevel:"1",
+        wLevel: "1",
         title: "Palm",
         lastWateredDate: "2025-09-18",
         nextWateredDate: "2025-09-19",
@@ -117,6 +123,11 @@ const MainPage = props => {
         setShowEditMap(false);
     };
 
+    // MAP STATE
+
+    const [selectedSquares, setSelectedSquares] = useState(DUMMY_MAP[0].selectedSquares);
+
+
     //JSX
     return (
         <>
@@ -178,7 +189,16 @@ const MainPage = props => {
 
                 {/* MAP */}
                 <div className='map'>
-                    {showEditMap ? <EditMap/> : <Map />}
+                    {showEditMap ?
+                        <EditMap
+                            closeEditMapHandler={closeEditMapHandler}
+                        />
+                        :
+                        <Map
+                            selectedSquares={selectedSquares}
+                            showEditMapHandler={showEditMapHandler}
+                        />
+                    }
                 </div>
 
             </div>
