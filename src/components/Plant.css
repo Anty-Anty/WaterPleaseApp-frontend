@@ -3,8 +3,11 @@
     position: relative;
 }
 
-.plant-button-stack{
-    display:none;
+.plant-button-stack {
+    /* display:none; */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
 }
 
 .plant-button-stack>* {
@@ -14,13 +17,14 @@
     font-size: 1.4em;
 }
 
-.plant-button-stack >*:hover {
+.plant-button-stack>*:hover {
     border-color: transparent;
     color: rgba(255, 255, 255, 0.45);
 
 }
 
-.plants-list-item:hover .plant-button-stack{
- display: flex;
+.plants-list-item:hover .plant-button-stack {
+    /* display:flex; */
+    opacity: 1;
+    pointer-events: auto;
 }
-

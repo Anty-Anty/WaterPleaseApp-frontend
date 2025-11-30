@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-// import './Plant.css';
+import './Map.css';
 
-const columnsNumber = 7;
+const columnsNumber = 8;
 const SquaresNumber = Math.pow(columnsNumber, 2)
 
 const Map = () => {
@@ -31,11 +31,18 @@ const Map = () => {
           );
         })}
 
+        {/* BUTTONS */}
+        <div className='map-btn'>
+          <button>✎</button>
+          <button>✔</button>
+          <button>✖</button>
+          <button>🗘</button>
+        </div>
+
       </div>
 
-      {/* BUTTONS */}
-      <div>hi</div>
-      <div>hi</div>
+
+
     </>
 
 

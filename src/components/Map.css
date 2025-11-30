@@ -1,0 +1,91 @@
+/* MAP */
+.map {
+  /* max-height: calc(100vh - 3rem); */
+  flex: 50%;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  /* justify-content: center;  */
+  /* align-items: center; */
+}
+
+.map-container {
+  align-self: flex-start;
+  margin-top: 2rem;
+
+  width: 100%;
+  /* height: 100%; */
+  padding: 3rem;
+
+
+  display: grid;
+  grid-template-rows: repeat(8, minmax(0, 85px));
+  grid-template-columns: repeat(8, minmax(0, 85px));
+  /* gap: 1px; */
+  aspect-ratio: 1 / 1;
+
+}
+
+.map-container-item {
+  color: rgba(41, 41, 41, 0.9);
+  border-left: 1px dashed rgba(255, 255, 255, 0.1);
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  /* outline: 1px solid black;
+  outline-offset: -1px; 
+  /* background-color: bisque; */
+  overflow: hidden;
+  /* width: 30px; */
+
+
+}
+
+.last-in-row {
+  border-right: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.last-row {
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+
+.map-btn {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+  top: 5rem;
+  left: 0.5rem;
+}
+
+.map-btn>* {
+    background-color: transparent;
+    padding: 0;
+    width: 50%;
+    font-size: 1.4em;
+}
+
+.map-container:hover .map-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+
+
+
+@media (max-width: 900px) {
+
+  .map-container {
+    padding: 5rem;
+    padding-top: 1rem;
+  }
+
+  .map-btn {
+    top: 3rem;
+  left: 2rem;
+}
+
+}
