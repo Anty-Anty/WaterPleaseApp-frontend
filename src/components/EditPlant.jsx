@@ -12,6 +12,7 @@ import './AddEditPlant.css';
 
 const EditPlant = props => {
 
+    //hook creates lists of available images
     const logos = useImagesList('plant');
     const wLogos = useImagesList('water');
 

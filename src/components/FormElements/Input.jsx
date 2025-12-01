@@ -37,10 +37,10 @@ const Input = props => {
     const { value, isValid } = inputState;
 
 
-    // UNLOCK WHEN FORM-HOOK is ready
-    // useEffect(()=>{
-    //     onInput(id, value, isValid)
-    // },[id, value, isValid, onInput])
+   
+    useEffect(()=>{
+        onInput(id, value, isValid)
+    },[id, value, isValid, onInput])
 
     const changeHandler = event => {
         //useReducer action
