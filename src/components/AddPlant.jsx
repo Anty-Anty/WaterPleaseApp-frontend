@@ -27,19 +27,19 @@ const AddPlant = props => {
     const closeWLogoPickerHandler = () => setShowWLogoPicker(false);
 
 
-    // state stores eaither logo picked in logoPicker.jsx or logo from PlantsList.jsx 
+    // state stores logo picked in logoPicker.jsx and logo from PlantsList.jsx 
     const [selectedLogo, setSelectedLogo] = useState(props.logo || null);
 
     const [selectedWLogo, setSelectedWLogo] = useState(props.wLogo || null);
 
     // state stores lastWateredDated initially recieved from DataBase or everytime its updated in CustomDateInput
-    const [lastWateredDate, setLastWateredDate] = useState(props.lastWateredDate || "");
+    // const [lastWateredDate, setLastWateredDate] = useState(props.lastWateredDate || "");
 
-    const dateInputHandler = (id, value, isValid) => {
-        if (id === "lastWateredDate") {
-            setLastWateredDate(value);
-        }
-    };
+    // const dateInputHandler = (id, value, isValid) => {
+    //     if (id === "lastWateredDate") {
+    //         setLastWateredDate(value);
+    //     }
+    // };
 
     //form hook
     const [formState, inputHandler] = useForm({
@@ -155,7 +155,7 @@ const AddPlant = props => {
                     <CustomDateInput
                         id="lastWateredDate"
                         placeholder="Select date"
-                        initialValue={lastWateredDate}
+                        // initialValue={lastWateredDate}
                         validators={[VALIDATOR_MAX_TODAY()]}
                         errorText="Please select a valid date."
                         // onInput={dateInputHandler}
@@ -168,7 +168,7 @@ const AddPlant = props => {
                     <NextWaterDateInput
                         id="nextWaterDate"
                         placeholder="Select date"
-                        lastWateredDate={lastWateredDate}
+                        lastWateredDate={formState.inputs.lastWateredDate.value}
                         validators={[VALIDATOR_REQUIRE(), VALIDATOR_MIN(1)]}
                         errorText="Please enter at least 1 day."
                         onInput={inputHandler}

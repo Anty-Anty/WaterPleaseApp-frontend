@@ -27,7 +27,7 @@ const EditPlant = props => {
     const closeWLogoPickerHandler = () => setShowWLogoPicker(false);
 
 
-    // state stores eaither logo picked in logoPicker.jsx or logo from PlantsList.jsx 
+    // state stores logo picked in logoPicker.jsx and logo from PlantsList.jsx 
     const [selectedLogo, setSelectedLogo] = useState(props.logo || null);
 
     const [selectedWLogo, setSelectedWLogo] = useState(props.wLogo || null);

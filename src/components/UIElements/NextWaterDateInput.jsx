@@ -27,22 +27,20 @@ const NextWaterDateInput = (props) => {
     const [isValid, setIsValid] = useState(false);
     const [isTouched, setIsTouched] = useState(false);
 
-    // Calculate next watering date, but do NOT overwrite isValid
+    // Calculate next watering date
     useEffect(() => {
-        if (!props.lastWateredDate || days === "") {
+        const ready = props.lastWateredDate && days !== "";
+        const valid = ready && validate(days, props.validators || []);
+
+        if (!valid) {
             setNextDate("");
             props.onInput && props.onInput(props.id, "", false);
             return;
         }
 
-        if (validate(days, props.validators || [])) {
-            const computed = addDays(props.lastWateredDate, days);
-            setNextDate(computed);
-            props.onInput && props.onInput(props.id, computed, true);
-        } else {
-            setNextDate("");
-            props.onInput && props.onInput(props.id, "", false);
-        }
+        const computed = addDays(props.lastWateredDate, days);
+        setNextDate(computed);
+        props.onInput && props.onInput(props.id, days, true);
     }, [days, props.lastWateredDate]);
 
     return (
