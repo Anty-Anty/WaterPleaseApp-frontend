@@ -58,8 +58,6 @@ const AddPlant = props => {
 
     }, false);
 
-    console.log(formState);
-
     return (
         <>
             <div className='plants-list-item'>
