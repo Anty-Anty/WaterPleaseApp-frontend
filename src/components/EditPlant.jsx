@@ -5,6 +5,7 @@ import LogoPicker from './UIElements/LogoPicker';
 import CustomDateInput from './UIElements/CustomDateInput';
 import NextWaterDateInput from './UIElements/NextWaterDateInput';
 import { VALIDATOR_REQUIRE, VALIDATOR_MAXLENGTH, VALIDATOR_MAX_TODAY, VALIDATOR_MIN } from './util/validators';
+import { useForm } from './hooks/form-hook';
 import { useImagesList } from './hooks/ImagesList-hook';
 
 
@@ -33,13 +34,54 @@ const EditPlant = props => {
     const [selectedWLogo, setSelectedWLogo] = useState(props.wLogo || null);
 
     // state stores lastWateredDated initially recieved from DataBase or everytime its updated in CustomDateInput
-    const [lastWateredDate, setLastWateredDate] = useState(props.lastWateredDate || "");
+    // const [lastWateredDate, setLastWateredDate] = useState(props.lastWateredDate || "");
 
-    const dateInputHandler = (id, value, isValid) => {
-        if (id === "lastWateredDate") {
-            setLastWateredDate(value);
+    // const dateInputHandler = (id, value, isValid) => {
+    //     if (id === "lastWateredDate") {
+    //         setLastWateredDate(value);
+    //     }
+    // };
+
+
+    //form hook
+    const [formState, inputHandler, setFormData] = useForm({
+        plant: {
+            value: '',
+            isValid: false
+        },
+        lastWateredDate: {
+            value: '',
+            isValid: false
+        },
+        nextWaterDate: {
+            value: '',
+            isValid: false
         }
-    };
+
+    }, false);
+
+    console.log(formState)
+
+    // populate form data / fill in the form
+    useEffect(() => {
+        setFormData(
+            {
+                plant: {
+                    value: props.title || "",
+                    isValid: true
+                },
+                lastWateredDate: {
+                    value: props.lastWateredDate || "",
+                    isValid: true
+                },
+                nextWaterDate: {
+                    value: props.nextWateredDate || "",
+                    isValid: true
+                }
+            },
+            true
+        );
+    }, []);
 
     return (
         <>
@@ -107,12 +149,13 @@ const EditPlant = props => {
                     <Input
                         id='plant'
                         element="input"
-                        name="toDoItem"
-                        placeholder="plant name"
+                        name="plant"
+                        initialValue={props.title}
+                        placeholder= {props.title || "plant name"}
                         className='add-input'
                         validators={[VALIDATOR_REQUIRE(), VALIDATOR_MAXLENGTH(50)]}
                         errorText='Enter a valid plant name — 1 to 50 characters required.'
-                    // onInput={inputHandler}
+                        onInput={inputHandler}
                     />
                 </div>
 
@@ -121,10 +164,11 @@ const EditPlant = props => {
                     <CustomDateInput
                         id="lastWateredDate"
                         placeholder="Last Watering Date"
-                        initialValue={lastWateredDate}
+                        initialValue={props.lastWateredDate}
                         validators={[VALIDATOR_MAX_TODAY()]}
                         errorText="Please select a valid date."
-                        onInput={dateInputHandler}
+                        // onInput={dateInputHandler}
+                        onInput={inputHandler}
                     />
                 </div>
 
@@ -134,10 +178,10 @@ const EditPlant = props => {
                         id="nextWaterDate"
                         placeholder="Select date"
                         nextWateredDate={props.nextWateredDate}
-                        lastWateredDate={lastWateredDate}
+                        lastWateredDate={formState.inputs.lastWateredDate.value}
                         validators={[VALIDATOR_REQUIRE(), VALIDATOR_MIN(1)]}
                         errorText="Please enter at least 1 day."
-                    // onInput={props.inputHandler} 
+                        onInput={inputHandler}
                     />
                 </div>
 
@@ -148,7 +192,11 @@ const EditPlant = props => {
                         </div> */}
 
                 <div className="add-edit-plant-button-stack">
-                    <button>✔</button>
+                    <button
+                        type="submit"
+                        disabled={!formState.isValid}
+                        className={`btn ${!formState.isValid ? 'btn-disabled' : ''}`}
+                    >✔</button>
                     <button onClick={props.closeEditModalHandler}>✖</button>
                 </div>
             </div>
