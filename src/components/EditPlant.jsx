@@ -5,6 +5,7 @@ import LogoPicker from './UIElements/LogoPicker';
 import CustomDateInput from './UIElements/CustomDateInput';
 import NextWaterDateInput from './UIElements/NextWaterDateInput';
 import { VALIDATOR_REQUIRE, VALIDATOR_MAXLENGTH, VALIDATOR_MAX_TODAY, VALIDATOR_MIN } from './util/validators';
+import { addDays } from "./util/addDays";
 import { useForm } from './hooks/form-hook';
 import { useImagesList } from './hooks/ImagesList-hook';
 
@@ -53,14 +54,14 @@ const EditPlant = props => {
             value: '',
             isValid: false
         },
-        nextWaterDate: {
+        daysToNextWatering: {
             value: '',
             isValid: false
         }
 
     }, false);
 
-    console.log(formState)
+    // console.log(formState)
 
     // populate form data / fill in the form
     useEffect(() => {
@@ -74,8 +75,8 @@ const EditPlant = props => {
                     value: props.lastWateredDate || "",
                     isValid: true
                 },
-                nextWaterDate: {
-                    value: props.nextWateredDate || "",
+                daysToNextWatering: {
+                    value: props.daysToNextWatering || "",
                     isValid: true
                 }
             },
@@ -175,9 +176,9 @@ const EditPlant = props => {
                 {/* Next Watering Date */}
                 <div>
                     <NextWaterDateInput
-                        id="nextWaterDate"
-                        placeholder="Select date"
-                        nextWateredDate={props.nextWateredDate}
+                        id="daysToNextWatering"
+                        placeholder={addDays(props.lastWateredDate,props.daysToNextWatering)}
+                        // nextWateredDate={props.daysToNextWatering}
                         lastWateredDate={formState.inputs.lastWateredDate.value}
                         validators={[VALIDATOR_REQUIRE(), VALIDATOR_MIN(1)]}
                         errorText="Please enter at least 1 day."

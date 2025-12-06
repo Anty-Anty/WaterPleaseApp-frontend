@@ -6,20 +6,21 @@
 import React, { useState, useEffect } from "react";
 import { validate } from "../util/validators";
 import { formatDisplayDate } from "../util/formatDisplayDate";
+import { addDays } from "../util/addDays";
 import "./NextWaterDateInput.css";
 
-function addDays(dateStr, days) {
-    if (!dateStr) return "";
-    const [y, m, d] = dateStr.split("-").map(Number);
-    const base = new Date(y, m - 1, d); // safe construction, no TZ issues
-    base.setDate(base.getDate() + Number(days));
+// function addDays(dateStr, days) {
+//     if (!dateStr) return "";
+//     const [y, m, d] = dateStr.split("-").map(Number);
+//     const base = new Date(y, m - 1, d); // safe construction, no TZ issues
+//     base.setDate(base.getDate() + Number(days));
 
-    // Format as "Sep 15"
-    return base.toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-    });
-}
+//     // Format as "Sep 15"
+//     return base.toLocaleDateString("en-US", {
+//         month: "short",
+//         day: "numeric",
+//     });
+// }
 
 const NextWaterDateInput = (props) => {
     const [days, setDays] = useState(props.initialDays || "");
@@ -49,7 +50,8 @@ const NextWaterDateInput = (props) => {
                 type="number"
                 min="1"
                 placeholder={
-                    props.nextWateredDate ? formatDisplayDate(props.nextWateredDate) : props.placeholder
+                    // props.nextWateredDate ? formatDisplayDate(props.nextWateredDate) : 
+                    props.placeholder
                 }
                 className={`number-input ${!isValid && isTouched ? "add-item-invalid" : ""}`}
                 value={days}

@@ -34,7 +34,7 @@ const PlantsList = props => {
                             title={plant.title}
                             logoList={props.plants}
                             lastWateredDate={plant.lastWateredDate}
-                            nextWateredDate={plant.nextWateredDate}
+                            daysToNextWatering={plant.daysToNextWatering}
                             // plant={plant}
                             closeEditModalHandler={() => props.setEditingPlantId(null)}
                         />
@@ -48,7 +48,7 @@ const PlantsList = props => {
                         wLevel={plant.wLevel}
                         title={plant.title}
                         lastWateredDate={plant.lastWateredDate}
-                        nextWateredDate={plant.nextWateredDate}
+                        daysToNextWatering={plant.daysToNextWatering}
                         mapPosition={plant.mapPosition}
 
                         setEditingPlantId={props.setEditingPlantId}

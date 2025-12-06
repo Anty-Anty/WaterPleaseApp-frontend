@@ -51,7 +51,7 @@ const AddPlant = props => {
             value: '',
             isValid: false
         },
-        nextWaterDate: {
+        daysToNextWatering: {
             value: '',
             isValid: false
         }
@@ -164,7 +164,7 @@ const AddPlant = props => {
                 {/* Next Watering Date */}
                 <div>
                     <NextWaterDateInput
-                        id="nextWaterDate"
+                        id="daysToNextWatering"
                         placeholder="Select date"
                         lastWateredDate={formState.inputs.lastWateredDate.value}
                         validators={[VALIDATOR_REQUIRE(), VALIDATOR_MIN(1)]}

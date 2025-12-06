@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 
 import { formatDisplayDate } from "../components/util/formatDisplayDate";
+import { addDays } from "./util/addDays";
 import './Plant.css';
 
 const Plant = props => {
 
     //identifies which plant to show in edit mode
     const isEditing = props.editingPlantId === props.id;
+
+
 
     return (
         <>
@@ -20,7 +23,7 @@ const Plant = props => {
                 </div>
                 <div>{props.title}</div>
                 <div>{formatDisplayDate(props.lastWateredDate)}</div>
-                <div>{formatDisplayDate(props.nextWateredDate)}</div>
+                <div>{addDays(props.lastWateredDate, props.daysToNextWatering)}</div>
 
 
                 {/* <div className="button-stack">

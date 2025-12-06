@@ -22,7 +22,7 @@ const DUMMY_PLANTS_LIST = [
         wLevel: "1",
         title: "Aloe Vera",
         lastWateredDate: "2025-09-18",
-        nextWateredDate: "2025-09-19",
+        daysToNextWatering: "1",
         mapPosition: "h1"
     },
     {
@@ -31,7 +31,7 @@ const DUMMY_PLANTS_LIST = [
         wLevel: "2",
         title: "Palm",
         lastWateredDate: "2025-09-18",
-        nextWateredDate: "2025-09-19",
+        daysToNextWatering: "1",
         mapPosition: "h2"
     },
     {
@@ -40,7 +40,7 @@ const DUMMY_PLANTS_LIST = [
         wLevel: "3",
         title: "Palm",
         lastWateredDate: "2025-09-18",
-        nextWateredDate: "2025-09-19",
+        daysToNextWatering: "1",
         mapPosition: "h2"
     },
     {
@@ -49,7 +49,7 @@ const DUMMY_PLANTS_LIST = [
         wLevel: "1",
         title: "Palm",
         lastWateredDate: "2025-09-18",
-        nextWateredDate: "2025-09-19",
+        daysToNextWatering: "1",
         mapPosition: "h2"
     },
     {
@@ -58,7 +58,7 @@ const DUMMY_PLANTS_LIST = [
         wLevel: "1",
         title: "Palm",
         lastWateredDate: "2025-09-18",
-        nextWateredDate: "2025-09-19",
+        daysToNextWatering: "1",
         mapPosition: "h2"
     }
 
