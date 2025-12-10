@@ -17,13 +17,11 @@
   /* height: 100%; */
   padding: 3rem;
 
-
   display: grid;
-  grid-template-rows: repeat(8, minmax(0, 85px));
-  grid-template-columns: repeat(8, minmax(0, 85px));
+  grid-template-rows: repeat(var(--columns-number), minmax(0, 85px));
+  grid-template-columns: repeat(var(--columns-number), minmax(0, 85px));
   /* gap: 1px; */
   aspect-ratio: 1 / 1;
-
 }
 
 .map-container-item {
@@ -49,7 +47,6 @@
   border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
 }
 
-
 .map-btn {
   opacity: 0;
   pointer-events: none;
@@ -62,17 +59,16 @@
   left: 0.5rem;
 }
 
-.map-btn>* {
-    background-color: transparent;
-    padding: 0;
-    width: 50%;
-    font-size: 1.4em;
+.map-btn > * {
+  background-color: transparent;
+  padding: 0;
+  width: 50%;
+  font-size: 1.4em;
 }
 
-.map-btn>*:hover {
-    border-color: transparent;
-    color: rgba(255, 255, 255, 0.45);
-
+.map-btn > *:hover {
+  border-color: transparent;
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .map-container:hover .map-btn {
@@ -80,12 +76,7 @@
   pointer-events: auto;
 }
 
-
-
-
-
 @media (max-width: 900px) {
-
   .map-container {
     padding: 5rem;
     padding-top: 1rem;
@@ -93,7 +84,6 @@
 
   .map-btn {
     top: 3rem;
-  left: 2rem;
-}
-
+    left: 2rem;
+  }
 }

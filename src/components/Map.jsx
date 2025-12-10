@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import './Map.css';
+import "./Map.css";
 
 const columnsNumber = 8;
-const SquaresNumber = Math.pow(columnsNumber, 2)
+const SquaresNumber = Math.pow(columnsNumber, 2);
 
-const Map = props => {
+const Map = (props) => {
   return (
     <>
-      <div className="map-container">
-
+      <div
+        className="map-container"
+        style={{ "--columns-number": columnsNumber }}
+      >
         {/* MAP GRID */}
         {Array.from({ length: SquaresNumber }, (_, i) => {
           // creates table of squares
@@ -25,9 +27,9 @@ const Map = props => {
             <div
               key={i}
               className={`map-container-item 
-              ${isLastInRow ? 'last-in-row' : ''} 
-              ${isLastRow ? 'last-row' : ''}
-              ${isSelected ? 'selected' : ''}
+              ${isLastInRow ? "last-in-row" : ""} 
+              ${isLastRow ? "last-row" : ""}
+              ${isSelected ? "selected" : ""}
               `}
             >
               {/* {index} */}
@@ -36,20 +38,14 @@ const Map = props => {
         })}
 
         {/* BUTTONS */}
-        <div className='map-btn'>
+        <div className="map-btn">
           <button onClick={props.showEditMapHandler}>✎</button>
           {/* <button>✔</button>
           <button>✖</button>
           <button>🗘</button> */}
         </div>
-
       </div>
-
-
-
     </>
-
-
   );
 };
 
