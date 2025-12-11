@@ -60,6 +60,33 @@ const DUMMY_PLANTS_LIST = [
         lastWateredDate: "2025-09-18",
         daysToNextWatering: "1",
         mapPosition: "h2"
+    },
+    {
+        id: "6",
+        img: "2",
+        wLevel: "1",
+        title: "Palm",
+        lastWateredDate: "2025-09-18",
+        daysToNextWatering: "1",
+        mapPosition: "h2"
+    },
+    {
+        id: "7",
+        img: "2",
+        wLevel: "1",
+        title: "Palm",
+        lastWateredDate: "2025-09-18",
+        daysToNextWatering: "1",
+        mapPosition: "h2"
+    },
+    {
+        id: "8",
+        img: "2",
+        wLevel: "1",
+        title: "Palm",
+        lastWateredDate: "2025-09-18",
+        daysToNextWatering: "1",
+        mapPosition: "h2"
     }
 
 ]
@@ -217,6 +244,7 @@ const MainPage = props => {
                 <div className='map'>
                     {showEditMap ?
                         <EditMap
+                            plants={DUMMY_PLANTS_LIST}
                             selectedSquares={tempSelectedSquares}
                             squareClickHandler={squareClickHandler}
                             mapSaveHandler={mapSaveHandler}

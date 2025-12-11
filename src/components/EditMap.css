@@ -1,6 +1,6 @@
 .map-container-edit {
   align-self: flex-start;
-  margin-top: 10rem;
+  margin-top: 14rem;
 
   width: 100%;
   /* height: 100%; */
@@ -21,18 +21,18 @@
   flex-direction: column;
 
   position: absolute;
-  top: 13rem;
+  top: 17rem;
   left: 0.5rem;
 }
 
-.map-btn-edit > * {
+.map-btn-edit>* {
   background-color: transparent;
   padding: 0;
   width: 50%;
   font-size: 1.4em;
 }
 
-.map-btn-edit > *:hover {
+.map-btn-edit>*:hover {
   border-color: transparent;
   color: rgba(255, 255, 255, 0.45);
 }
@@ -43,9 +43,41 @@
 }
 
 .plant-list-edit {
+  width: calc(100% - 7rem);
+  max-width: 665px;
+  /* 8*85=680px */
   position: absolute;
-  top: 1rem;
-  left: 0.5rem;
+  top: 3rem;
+  left: 3rem;
+}
+
+.plant-list-picker {
+  position: absolute;
+  width: 100%;
+  min-height: 100px;
+  margin-top: 0.5rem;
+  display: flex;
+  /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    max-width: calc(50px * 5 + 0.5rem * 4); */
+  /* limit to 5 columns visually */
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: rgba(77, 77, 77, 0.9);
+  border-radius: 10px;
+}
+
+.plant-list-edit {
+  text-align: center;
+}
+
+.plant-list-edit h3 {
+  margin: 0;
+}
+
+.plant-list-edit p {
+  margin: 1;
+  font-size: 0.9rem;
 }
 
 @media (max-width: 900px) {
@@ -55,13 +87,14 @@
   }
 
   .map-btn-edit {
-    top: 11rem;
+    top: 15rem;
     left: 2rem;
   }
 
   .plant-list-edit {
+    width: calc(100% - 11rem);
     position: absolute;
     top: 1rem;
-    left: 4rem;
+    left: 5rem;
   }
 }
