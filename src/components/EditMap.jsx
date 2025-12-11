@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "./Map.css";
+import "./EditMap.css";
 
 const columnsNumber = 8;
 const SquaresNumber = Math.pow(columnsNumber, 2);
@@ -9,7 +9,7 @@ const EditMap = (props) => {
   return (
     <>
       <div
-        className="map-container"
+        className="map-container-edit"
         style={{ "--columns-number": columnsNumber }}
       >
         {/* MAP GRID */}
@@ -39,11 +39,16 @@ const EditMap = (props) => {
         })}
 
         {/* BUTTONS */}
-        <div className="map-btn">
+        <div className="map-btn-edit">
           <button onClick={props.mapSaveHandler}>✔</button>
           <button onClick={props.mapCancelHandler}>✖</button>
           <button onClick={props.mapResetHandler}>🗘</button>
         </div>
+      </div>
+
+      <div className="plant-list-edit">
+        <div>edit map</div>
+        <div>pick plant</div>
       </div>
     </>
   );

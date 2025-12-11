@@ -1,0 +1,67 @@
+.map-container-edit {
+  align-self: flex-start;
+  margin-top: 10rem;
+
+  width: 100%;
+  /* height: 100%; */
+  padding: 3rem;
+
+  display: grid;
+  grid-template-rows: repeat(var(--columns-number), minmax(0, 85px));
+  grid-template-columns: repeat(var(--columns-number), minmax(0, 85px));
+  /* gap: 1px; */
+  aspect-ratio: 1 / 1;
+}
+
+.map-btn-edit {
+  /* opacity: 0; */
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+  top: 13rem;
+  left: 0.5rem;
+}
+
+.map-btn-edit > * {
+  background-color: transparent;
+  padding: 0;
+  width: 50%;
+  font-size: 1.4em;
+}
+
+.map-btn-edit > *:hover {
+  border-color: transparent;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.map-container-edit:hover .map-btn-edit {
+  /* opacity: 1; */
+  pointer-events: auto;
+}
+
+.plant-list-edit {
+  position: absolute;
+  top: 1rem;
+  left: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .map-container-edit {
+    padding: 5rem;
+    padding-top: 1rem;
+  }
+
+  .map-btn-edit {
+    top: 11rem;
+    left: 2rem;
+  }
+
+  .plant-list-edit {
+    position: absolute;
+    top: 1rem;
+    left: 4rem;
+  }
+}
