@@ -2,10 +2,11 @@ import React, { useState } from "react";
 
 import "./Map.css";
 
-const columnsNumber = 8;
-const SquaresNumber = Math.pow(columnsNumber, 2);
-
 const Map = (props) => {
+
+  const columnsNumber = props.DUMMY_MAP.columnsNumber;
+  const SquaresNumber = Math.pow(columnsNumber, 2);
+
   return (
     <>
       <div

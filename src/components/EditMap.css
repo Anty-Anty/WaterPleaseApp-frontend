@@ -54,9 +54,10 @@
 .plant-list-picker {
   position: absolute;
   width: 100%;
-  min-height: 100px;
+  /* min-height: 100px; */
   margin-top: 0.5rem;
   display: flex;
+  flex-wrap:wrap;
   /* display: grid;
     grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
     max-width: calc(50px * 5 + 0.5rem * 4); */

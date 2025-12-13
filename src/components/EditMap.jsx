@@ -2,10 +2,11 @@ import React, { useState } from "react";
 
 import "./EditMap.css";
 
-const columnsNumber = 8;
-const SquaresNumber = Math.pow(columnsNumber, 2);
-
 const EditMap = (props) => {
+
+    const columnsNumber = props.DUMMY_MAP.columnsNumber;
+    const SquaresNumber = Math.pow(columnsNumber, 2);
+
     return (
         <>
             <div
@@ -23,6 +24,8 @@ const EditMap = (props) => {
                     // adds background to selected square
                     const isSelected = props.selectedSquares.includes(index);
 
+                    const plant = props.DUMMY_MAP.squares[index];
+
                     return (
                         <div
                             key={i}
@@ -33,7 +36,19 @@ const EditMap = (props) => {
                              ${isSelected ? "selected" : ""}
                             `}
                         >
+
+                            {plant > 0 && (
+                                <div className="logo-option">
+                                    <img
+                                        src={`images/plant_${plant}.svg`}
+                                        alt={`plant_${plant}`}
+                                        className="plant-logo"
+                                    />
+                                </div>
+                            )}
+
                             {/* {index} */}
+
                         </div>
                     );
                 })}
