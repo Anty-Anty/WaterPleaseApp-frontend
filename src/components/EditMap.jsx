@@ -7,6 +7,18 @@ const EditMap = (props) => {
     const columnsNumber = props.DUMMY_MAP.columnsNumber;
     const SquaresNumber = Math.pow(columnsNumber, 2);
 
+    //drag&drop:
+    const allowDrop = (e) => {
+        e.preventDefault();
+    };
+
+    const onDrop = (e, squareIndex) => {
+        e.preventDefault();
+        const plant = e.dataTransfer.getData("plantId");
+
+        props.onPlantDrop(squareIndex, Number(plant));
+    };
+
     return (
         <>
             <div
@@ -28,17 +40,26 @@ const EditMap = (props) => {
 
                     return (
                         <div
-                            key={i}
+                            key={index}
                             onClick={() => props.squareClickHandler(index)}
                             className={`map-container-item 
                              ${isLastInRow ? "last-in-row" : ""} 
                              ${isLastRow ? "last-row" : ""}
                              ${isSelected ? "selected" : ""}
                             `}
+                            //drag&drop:
+                            onDragOver={allowDrop}
+                            onDrop={(e) => onDrop(e, index)}
                         >
 
                             {plant > 0 && (
-                                <div className="logo-option">
+                                <div
+                                    className="logo-option"
+                                    onClick={(e) => {
+                                        e.stopPropagation(); // prevent square select
+                                        props.onRemovePlant(index);
+                                    }}
+                                >
                                     <img
                                         src={`images/plant_${plant}.svg`}
                                         alt={`plant_${plant}`}
@@ -70,6 +91,11 @@ const EditMap = (props) => {
                             <div
                                 key={plant.id}
                                 className='logo-option'
+                                //drag&drop:
+                                draggable
+                                onDragStart={(e) => {
+                                    e.dataTransfer.setData("plantId", plant.img);
+                                }}
                             // onClick={() => { props.onSelect(plant.img); }}
                             >
                                 <img
