@@ -288,7 +288,7 @@ const MainPage = props => {
                         <Map
                             selectedSquares={selectedSquares}
                             showEditMapHandler={showEditMapHandler}
-                            DUMMY_MAP={DUMMY_MAP}
+                            DUMMY_MAP={dummyMap}
                         />
                     }
                 </div>

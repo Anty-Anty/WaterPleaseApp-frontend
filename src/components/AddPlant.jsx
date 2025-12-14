@@ -165,7 +165,7 @@ const AddPlant = props => {
                 <div>
                     <NextWaterDateInput
                         id="daysToNextWatering"
-                        placeholder="Select date"
+                        placeholder="Set interval"
                         lastWateredDate={formState.inputs.lastWateredDate.value}
                         validators={[VALIDATOR_REQUIRE(), VALIDATOR_MIN(1)]}
                         errorText="Please enter at least 1 day."

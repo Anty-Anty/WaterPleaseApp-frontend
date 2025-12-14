@@ -84,6 +84,8 @@ const EditPlant = props => {
         );
     }, []);
 
+    // console.log(formState)
+
     return (
         <>
 
@@ -152,7 +154,8 @@ const EditPlant = props => {
                         element="input"
                         name="plant"
                         initialValue={props.title}
-                        placeholder= {props.title || "plant name"}
+                        initialValidity={true}
+                        placeholder={props.title || "plant name"}
                         className='add-input'
                         validators={[VALIDATOR_REQUIRE(), VALIDATOR_MAXLENGTH(50)]}
                         errorText='Enter a valid plant name — 1 to 50 characters required.'
@@ -177,7 +180,9 @@ const EditPlant = props => {
                 <div>
                     <NextWaterDateInput
                         id="daysToNextWatering"
-                        placeholder={addDays(props.lastWateredDate,props.daysToNextWatering)}
+                        placeholder={addDays(formState.inputs.lastWateredDate.value, props.daysToNextWatering)}
+                        readOnly
+                        initialDays={props.daysToNextWatering}
                         // nextWateredDate={props.daysToNextWatering}
                         lastWateredDate={formState.inputs.lastWateredDate.value}
                         validators={[VALIDATOR_REQUIRE(), VALIDATOR_MIN(1)]}

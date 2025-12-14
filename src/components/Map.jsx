@@ -24,6 +24,8 @@ const Map = (props) => {
           // adds background to selected square
           const isSelected = props.selectedSquares.includes(index);
 
+          const plant = props.DUMMY_MAP.squares[index];
+
           return (
             <div
               key={i}
@@ -33,6 +35,19 @@ const Map = (props) => {
               ${isSelected ? "selected" : ""}
               `}
             >
+
+              {plant > 0 && (
+                <div
+                  className="logo-option"
+                >
+                  <img
+                    src={`images/plant_${plant}.svg`}
+                    alt={`plant_${plant}`}
+                    className="plant-logo"
+                  />
+                </div>
+              )}
+
               {/* {index} */}
             </div>
           );

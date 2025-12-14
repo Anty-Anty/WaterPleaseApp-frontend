@@ -33,6 +33,15 @@ const NextWaterDateInput = (props) => {
         const ready = props.lastWateredDate && days !== "";
         const valid = ready && validate(days, props.validators || []);
 
+        if (!ready) {
+            if (days !== "") { // notify initial value even if lastWateredDate not ready yet
+                const validInitial = validate(days, props.validators || []);
+                props.onInput && props.onInput(props.id, days, validInitial);
+            }
+            setNextDate("");
+            return;
+        }
+
         if (!valid) {
             setNextDate("");
             props.onInput && props.onInput(props.id, "", false);
