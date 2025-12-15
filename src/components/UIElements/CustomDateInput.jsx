@@ -17,7 +17,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { validate } from "../util/validators";
-import { formatDisplayDate } from "../util/formatDisplayDate";
+import { formatDisplayDate } from "../util/days";
 import "./CustomDateInput.css";
 
 const CustomDateInput = (props) => {

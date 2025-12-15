@@ -5,8 +5,8 @@
 
 import React, { useState, useEffect } from "react";
 import { validate } from "../util/validators";
-import { formatDisplayDate } from "../util/formatDisplayDate";
-import { addDays } from "../util/addDays";
+import { formatDisplayDate } from "../util/days";
+import { addDays } from "../util/days";
 import "./NextWaterDateInput.css";
 
 // function addDays(dateStr, days) {

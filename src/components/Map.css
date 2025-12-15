@@ -59,14 +59,14 @@
   left: 0.5rem;
 }
 
-.map-btn > * {
+.map-btn>* {
   background-color: transparent;
   padding: 0;
   width: 50%;
   font-size: 1.4em;
 }
 
-.map-btn > *:hover {
+.map-btn>*:hover {
   border-color: transparent;
   color: rgba(255, 255, 255, 0.45);
 }
@@ -74,6 +74,40 @@
 .map-container:hover .map-btn {
   opacity: 1;
   pointer-events: auto;
+}
+
+.logo-option-map {
+  width: 85%;
+  height: 85%;
+  cursor: pointer;
+  /* border: 1px solid transparent;
+    border-radius: 8px; */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.logo-option-map img {
+  max-width: 70%;
+  max-height: 70%;
+}
+
+.logo-option-map:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.daysUntilNextWatering {
+  font-size: 12px;
+  margin-top: 16px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.daysUntilNextWatering.overdue {
+  color: rgb(194, 55, 46);
+  /* red for negative days */
+  font-weight: 600;
 }
 
 @media (max-width: 900px) {

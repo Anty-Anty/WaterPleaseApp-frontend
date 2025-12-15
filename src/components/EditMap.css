@@ -44,7 +44,7 @@
 
 .plant-list-edit {
   width: calc(100% - 7rem);
-  max-width: 665px;
+  max-width: calc(82px*var(--columns-number));
   /* 8*85=680px */
   position: absolute;
   top: 3rem;
@@ -66,6 +66,9 @@
   padding: 0.5rem;
   background: rgba(77, 77, 77, 0.9);
   border-radius: 10px;
+
+  max-height: calc(2 * 50px + 0.8rem); /* 2 rows */
+  overflow-y: auto;
 }
 
 .plant-list-edit {

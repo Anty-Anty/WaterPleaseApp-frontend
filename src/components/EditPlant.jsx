@@ -5,7 +5,7 @@ import LogoPicker from './UIElements/LogoPicker';
 import CustomDateInput from './UIElements/CustomDateInput';
 import NextWaterDateInput from './UIElements/NextWaterDateInput';
 import { VALIDATOR_REQUIRE, VALIDATOR_MAXLENGTH, VALIDATOR_MAX_TODAY, VALIDATOR_MIN } from './util/validators';
-import { addDays } from "./util/addDays";
+import { addDays } from "./util/days";
 import { useForm } from './hooks/form-hook';
 import { useImagesList } from './hooks/ImagesList-hook';
 

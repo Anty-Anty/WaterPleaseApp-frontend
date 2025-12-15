@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import "./EditMap.css";
+import { daysUntilNextWatering } from "./util/days";
 
 const EditMap = (props) => {
 
@@ -14,9 +15,10 @@ const EditMap = (props) => {
 
     const onDrop = (e, squareIndex) => {
         e.preventDefault();
-        const plant = e.dataTransfer.getData("plantId");
+        const plantId = e.dataTransfer.getData("plantId");
 
-        props.onPlantDrop(squareIndex, Number(plant));
+
+        props.onPlantDrop(squareIndex, plantId);
     };
 
     return (
@@ -36,7 +38,20 @@ const EditMap = (props) => {
                     // adds background to selected square
                     const isSelected = props.selectedSquares.includes(index);
 
-                    const plant = props.DUMMY_MAP.squares[index];
+                    // plantId stored in map
+                    const plantId = props.DUMMY_MAP.squares[index];
+
+                    // find full plant object
+                    const plant = props.plants.find(p => p.id === plantId);
+
+                    // calculate days 
+                    const days =
+                        plant?.lastWateredDate && plant?.daysToNextWatering
+                            ? daysUntilNextWatering(
+                                plant.lastWateredDate,
+                                plant.daysToNextWatering
+                            )
+                            : null;
 
                     return (
                         <div
@@ -52,21 +67,29 @@ const EditMap = (props) => {
                             onDrop={(e) => onDrop(e, index)}
                         >
 
-                            {plant > 0 && (
+                            {plant && (
                                 <div
-                                    className="logo-option"
+                                    className="logo-option-map"
                                     onClick={(e) => {
                                         e.stopPropagation(); // prevent square select
                                         props.onRemovePlant(index);
                                     }}
                                 >
                                     <img
-                                        src={`images/plant_${plant}.svg`}
-                                        alt={`plant_${plant}`}
+                                        src={`images/plant_${plant.img}.svg`}
+                                        alt={plant.title}
                                         className="plant-logo"
                                     />
+
+                                    {days !== null && (
+                                        <div className={`daysUntilNextWatering ${days < 0 ? "overdue" : ""}`}>
+                                            {days}
+                                        </div>
+                                    )}
+
                                 </div>
-                            )}
+                            )
+                            }
 
                             {/* {index} */}
 
@@ -94,7 +117,7 @@ const EditMap = (props) => {
                                 //drag&drop:
                                 draggable
                                 onDragStart={(e) => {
-                                    e.dataTransfer.setData("plantId", plant.img);
+                                    e.dataTransfer.setData("plantId", plant.id);
                                 }}
                             // onClick={() => { props.onSelect(plant.img); }}
                             >
@@ -103,12 +126,13 @@ const EditMap = (props) => {
                                     alt={`plant_${plant.img}`}
                                     className="plant-logo"
                                 />
+
                             </div>
                         ))}
                     </div>
                 </div>
 
-            </div>
+            </div >
         </>
     );
 };

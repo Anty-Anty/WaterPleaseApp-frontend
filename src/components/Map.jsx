@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import "./Map.css";
+import { daysUntilNextWatering } from "./util/days";
 
 const Map = (props) => {
 
@@ -24,11 +25,25 @@ const Map = (props) => {
           // adds background to selected square
           const isSelected = props.selectedSquares.includes(index);
 
-          const plant = props.DUMMY_MAP.squares[index];
+          // plantId stored in map
+          const plantId = props.DUMMY_MAP.squares[index];
+
+          // find full plant object
+          const plant = props.plants.find(p => p.id === plantId);
+
+          // calculate days 
+          const days =
+            plant?.lastWateredDate && plant?.daysToNextWatering
+              ? daysUntilNextWatering(
+                plant.lastWateredDate,
+                plant.daysToNextWatering
+              )
+              : null;
 
           return (
+
             <div
-              key={i}
+              key={index}
               className={`map-container-item 
               ${isLastInRow ? "last-in-row" : ""} 
               ${isLastRow ? "last-row" : ""}
@@ -36,15 +51,22 @@ const Map = (props) => {
               `}
             >
 
-              {plant > 0 && (
+              {plant && (
                 <div
-                  className="logo-option"
+                  className="logo-option-map"
                 >
                   <img
-                    src={`images/plant_${plant}.svg`}
-                    alt={`plant_${plant}`}
+                    src={`images/plant_${plant.img}.svg`}
+                    alt={plant.title}
                     className="plant-logo"
                   />
+
+                  {days !== null && (
+                    <div className={`daysUntilNextWatering ${days < 0 ? "overdue" : ""}`}>
+                      {days}
+                    </div>
+                  )}
+
                 </div>
               )}
 

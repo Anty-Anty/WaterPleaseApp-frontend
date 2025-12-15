@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
-import { formatDisplayDate } from "../components/util/formatDisplayDate";
-import { addDays } from "./util/addDays";
+import { formatDisplayDate, addDays } from "./util/days";
 import './Plant.css';
 
 const Plant = props => {
