@@ -114,7 +114,9 @@ const DUMMY_MAP = {
 
 const MainPage = props => {
 
+    // OUTPUT from EditMap is saved in this state: assignes plant to Map's square
     const [dummyMap, setDummyMap] = useState(DUMMY_MAP);
+    // console.log(dummyMap)
 
 
     // ADD ITEM
@@ -179,6 +181,7 @@ const MainPage = props => {
     // main map state
     const [selectedSquares, setSelectedSquares] = useState(DUMMY_MAP.selectedSquares);
 
+    // OUTPUT from EditMap is saved in this state: assignes selected squares(map layout)
     // local temp editing state
     const [tempSelectedSquares, setTempSelectedSquares] = useState(selectedSquares);
 

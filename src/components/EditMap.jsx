@@ -3,6 +3,19 @@ import React, { useState } from "react";
 import "./EditMap.css";
 import { daysUntilNextWatering } from "./util/days";
 
+// const submitHandler = (e) => {
+//   e.preventDefault();
+
+//   props.onUpdatePlant({
+//     id: props.id,
+//     title: formState.inputs.plant.value,
+//     lastWateredDate: formState.inputs.lastWateredDate.value,
+//     daysToNextWatering: formState.inputs.daysToNextWatering.value,
+//     img: selectedLogo || props.img,
+//     wLevel: selectedWLogo || props.wLevel
+//   });
+// };
+
 const EditMap = (props) => {
 
     const columnsNumber = props.DUMMY_MAP.columnsNumber;
@@ -17,7 +30,7 @@ const EditMap = (props) => {
         e.preventDefault();
         const plantId = e.dataTransfer.getData("plantId");
 
-
+        // OUTPUT: assignes plant to Map's square and sends to MainPage
         props.onPlantDrop(squareIndex, plantId);
     };
 
@@ -56,6 +69,7 @@ const EditMap = (props) => {
                     return (
                         <div
                             key={index}
+                            // OUTPUT: sends selected square to MainPage
                             onClick={() => props.squareClickHandler(index)}
                             className={`map-container-item 
                              ${isLastInRow ? "last-in-row" : ""} 
@@ -81,6 +95,7 @@ const EditMap = (props) => {
                                         className="plant-logo"
                                     />
 
+                                    {/* number of days before next watering */}
                                     {days !== null && (
                                         <div className={`daysUntilNextWatering ${days < 0 ? "overdue" : ""}`}>
                                             {days}
