@@ -4,7 +4,6 @@ import "./Map.css";
 import { daysUntilNextWatering } from "./util/days";
 
 const Map = (props) => {
-
   const columnsNumber = props.DUMMY_MAP.columnsNumber;
   const SquaresNumber = Math.pow(columnsNumber, 2);
 
@@ -25,23 +24,19 @@ const Map = (props) => {
           // adds background to selected square
           const isSelected = props.selectedSquares.includes(index);
 
-          // plantId stored in map
-          const plantId = props.DUMMY_MAP.squares[index];
+          //derive plant from plants[]
+          const plant = props.plants.find((p) => p.mapPosition === index);
 
-          // find full plant object
-          const plant = props.plants.find(p => p.id === plantId);
-
-          // calculate days 
+          // calculate days
           const days =
             plant?.lastWateredDate && plant?.daysToNextWatering
               ? daysUntilNextWatering(
-                plant.lastWateredDate,
-                plant.daysToNextWatering
-              )
+                  plant.lastWateredDate,
+                  plant.daysToNextWatering
+                )
               : null;
 
           return (
-
             <div
               key={index}
               className={`map-container-item 
@@ -50,11 +45,8 @@ const Map = (props) => {
               ${isSelected ? "selected" : ""}
               `}
             >
-
               {plant && (
-                <div
-                  className="logo-option-map"
-                >
+                <div className="logo-option-map">
                   <img
                     src={`images/plant_${plant.img}.svg`}
                     alt={plant.title}
@@ -62,11 +54,14 @@ const Map = (props) => {
                   />
 
                   {days !== null && (
-                    <div className={`daysUntilNextWatering ${days < 0 ? "overdue" : ""}`}>
+                    <div
+                      className={`daysUntilNextWatering ${
+                        days < 0 ? "overdue" : ""
+                      }`}
+                    >
                       {days}
                     </div>
                   )}
-
                 </div>
               )}
 
