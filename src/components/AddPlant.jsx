@@ -58,9 +58,26 @@ const AddPlant = props => {
 
     }, false);
 
+    const submitHandler = (e) => {
+        e.preventDefault();
+
+        //SUBMIT
+        props.onSavePlant({
+            id: crypto.randomUUID(),
+            title: formState.inputs.plant.value,
+            lastWateredDate: formState.inputs.lastWateredDate.value,
+            daysToNextWatering: formState.inputs.daysToNextWatering.value,
+            img: selectedLogo || 1,
+            wLevel: selectedWLogo || 1,
+            mapPosition: null
+        });
+
+        props.closeAddModalHandler();
+    };
+
     return (
         <>
-            <div className='plants-list-item'>
+            <form onSubmit={submitHandler} className='plants-list-item'>
                 {/* plant logo */}
                 <div className="add-edit-plant-logo">
 
@@ -189,7 +206,7 @@ const AddPlant = props => {
                 </div>
 
 
-            </div >
+            </form >
         </>
     );
 };

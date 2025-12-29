@@ -86,10 +86,26 @@ const EditPlant = props => {
 
     // console.log(formState)
 
+    //SUBMIT
+    const submitHandler = (e) => {
+        e.preventDefault();
+
+        props.onUpdatePlant({
+            id: props.id,
+            title: formState.inputs.plant.value,
+            lastWateredDate: formState.inputs.lastWateredDate.value,
+            daysToNextWatering: formState.inputs.daysToNextWatering.value,
+            img: selectedLogo || props.img,
+            wLevel: selectedWLogo || props.wLevel
+        });
+
+        props.closeEditModalHandler();
+    };
+
     return (
         <>
 
-            <div className='plants-list-item'>
+            <form onSubmit={submitHandler} className='plants-list-item'>
 
                 {/* plant logo */}
                 <div className="add-edit-plant-logo" >
@@ -205,7 +221,7 @@ const EditPlant = props => {
                     >✔</button>
                     <button onClick={props.closeEditModalHandler}>✖</button>
                 </div>
-            </div>
+            </form>
         </>
     );
 };

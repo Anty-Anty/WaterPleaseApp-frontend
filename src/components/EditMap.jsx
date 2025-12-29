@@ -94,7 +94,7 @@ const EditMap = (props) => {
 
         {/* BUTTONS */}
         <div className="map-btn-edit">
-          <button onClick={props.mapSaveHandler}>✔</button>
+          <button onClick={props.submitMapHandler}>✔</button>
           <button onClick={props.mapCancelHandler}>✖</button>
           <button onClick={props.mapResetHandler}>🗘</button>
         </div>

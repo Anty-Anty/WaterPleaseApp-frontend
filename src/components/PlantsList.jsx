@@ -29,6 +29,7 @@ const PlantsList = props => {
                     return (
                         <EditPlant
                             key={plant.id}
+                            id={plant.id}
                             img={plant.img}
                             wLevel={plant.wLevel}
                             title={plant.title}
@@ -36,6 +37,7 @@ const PlantsList = props => {
                             lastWateredDate={plant.lastWateredDate}
                             daysToNextWatering={plant.daysToNextWatering}
                             // plant={plant}
+                            onUpdatePlant={props.onUpdatePlant}
                             closeEditModalHandler={() => props.setEditingPlantId(null)}
                         />
                     )
