@@ -198,6 +198,7 @@ const MainPage = (props) => {
         );
     };
 
+    //MAIN MAP STATE UPDATES HERE:
     const submitMapHandler  = () => {
         setSelectedSquares(tempSelectedSquares);
         setShowEditMap(false);
