@@ -2,12 +2,15 @@ import React, { useState, useReducer, useEffect } from "react";
 
 import PlantsList from "../components/PlantsList";
 import Map from "../components/Map";
-
 import Modal from "../components/UIElements/Modal";
 import AddPlant from "../components/AddPlant";
+import EditMap from "../components/EditMap";
+import LoadingSpinner from '../components/UIElements/LoadingSpinner';
+import ErrorModal from '../components/UIElements/ErrorModal';
+import { useHttpClient } from '../components/hooks/http-hook';
 
 import "./MainPage.css";
-import EditMap from "../components/EditMap";
+
 
 const DUMMY_PLANTS_LIST = [
     {
@@ -108,6 +111,9 @@ const DUMMY_MAP = {
 };
 
 const MainPage = (props) => {
+
+    const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
     // ADD ITEM
     // state controls visibility of AddItem.jsx
     const [showAddItem, setShowAddItem] = useState(false);
@@ -186,8 +192,25 @@ const MainPage = (props) => {
     const [tempSelectedSquares, setTempSelectedSquares] =
         useState(selectedSquares);
 
-    //state to store location of plant on map
-    const [plants, setPlants] = useState(DUMMY_PLANTS_LIST);
+    //FETCHING PLANTS FROM DATABASE:
+    const [plants, setPlants] = useState([]);
+
+
+
+    useEffect(() => {
+        //async is not used directly in useEffect. 
+        const fetchItems = async () => {
+            try {
+                const responseData = await sendRequest(
+                    `http://localhost:5000/api/plants`,
+                    'GET',
+                    null
+                );
+                setPlants(responseData.plantsList);
+            } catch (err) { }
+        };
+        fetchItems();
+    }, [sendRequest]);
 
     const squareClickHandler = (squareId) => {
         setTempSelectedSquares(
@@ -199,7 +222,7 @@ const MainPage = (props) => {
     };
 
     //MAIN MAP STATE UPDATES HERE:
-    const submitMapHandler  = () => {
+    const submitMapHandler = () => {
         setSelectedSquares(tempSelectedSquares);
         setShowEditMap(false);
     };
@@ -244,6 +267,9 @@ const MainPage = (props) => {
     //JSX
     return (
         <>
+            <ErrorModal error={error} onClear={clearError} />
+            {isLoading && <div className='center'><LoadingSpinner /></div>}
+
             <div className="main-container">
                 {/* LIST OF PLANTS */}
                 <div className="plants-list">
@@ -311,7 +337,7 @@ const MainPage = (props) => {
                             DUMMY_MAP={DUMMY_MAP}
                             selectedSquares={tempSelectedSquares}
                             squareClickHandler={squareClickHandler}
-                            submitMapHandler ={submitMapHandler}
+                            submitMapHandler={submitMapHandler}
                             mapCancelHandler={mapCancelHandler}
                             mapResetHandler={mapResetHandler}
                             //drag&drop:
