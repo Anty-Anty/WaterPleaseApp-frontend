@@ -202,7 +202,7 @@ const MainPage = (props) => {
         const fetchItems = async () => {
             try {
                 const responseData = await sendRequest(
-                    `http://localhost:5000/api/plants`,
+                    `${import.meta.env.VITE_BACKEND_URL}/api/plants`,
                     'GET',
                     null
                 );
