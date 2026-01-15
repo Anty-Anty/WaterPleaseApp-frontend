@@ -95,6 +95,27 @@ const MainPage = () => {
   };
 
   /* =========================
+     MAP PATCH API
+  ========================= */
+  const updateMapHandler = async (updatedSquares) => {
+    try {
+      const responseData = await sendRequest(
+        `${import.meta.env.VITE_BACKEND_URL}/api/maps/editmap`,
+        "PATCH",
+        JSON.stringify({
+          selectedSquares: updatedSquares,
+        }),
+        {
+          "Content-Type": "application/json",
+        }
+      );
+
+      setMap(responseData.map);
+      setSelectedSquares(responseData.map.selectedSquares);
+    } catch (err) {}
+  };
+
+  /* =========================
      MAP EDITING
   ========================= */
   const showEditMapHandler = () => {
@@ -110,8 +131,8 @@ const MainPage = () => {
     );
   };
 
-  const submitMapHandler = () => {
-    setSelectedSquares(tempSelectedSquares);
+  const submitMapHandler = async () => {
+    await updateMapHandler(tempSelectedSquares);
     setShowEditMap(false);
   };
 
