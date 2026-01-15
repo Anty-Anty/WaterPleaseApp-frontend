@@ -94,6 +94,31 @@ const MainPage = () => {
     });
   };
 
+   /* =========================
+     PLANT CREATE API
+  ========================= */
+  const createPlantHandler = async (plantData) => {
+    try {
+      const responseData = await sendRequest(
+        `${import.meta.env.VITE_BACKEND_URL}/api/plants/createplant`,
+        "POST",
+        JSON.stringify({
+          img: plantData.img,
+          wLevel: plantData.wLevel,
+          title: plantData.title,
+          lastWateredDate: plantData.lastWateredDate,
+          daysToNextWatering: plantData.daysToNextWatering,
+        }),
+        {
+          "Content-Type": "application/json",
+        }
+      );
+
+      upsertPlantHandler(responseData.plant);
+      setShowAddItem(false);
+    } catch (err) {}
+  };
+
   /* =========================
      MAP PATCH API
   ========================= */
@@ -146,7 +171,7 @@ const MainPage = () => {
   };
 
   /* =========================
-     DRAG & DROP
+     DRAG & DROP (LOCAL)
   ========================= */
   const plantDropHandler = (squareIndex, plantId) => {
     setPlants((prev) =>
@@ -210,7 +235,7 @@ const MainPage = () => {
 
             {showAddItem && (
               <AddPlant
-                onSavePlant={upsertPlantHandler}
+                onSavePlant={createPlantHandler}
                 closeAddModalHandler={() => setShowAddItem(false)}
               />
             )}
