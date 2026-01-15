@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 
 import PlantsList from "../components/PlantsList";
 import Map from "../components/Map";
@@ -11,112 +11,178 @@ import { useHttpClient } from "../components/hooks/http-hook";
 
 import "./MainPage.css";
 
-const MainPage = () => {
+const DUMMY_PLANTS_LIST = [
+  {
+    id: "1",
+    img: "1",
+    wLevel: "1",
+    title: "Aloe Vera",
+    lastWateredDate: "2025-12-13",
+    daysToNextWatering: "2",
+    mapPosition: null,
+  },
+  {
+    id: "2",
+    img: "2",
+    wLevel: "2",
+    title: "Palm",
+    lastWateredDate: "2025-09-18",
+    daysToNextWatering: "1",
+    mapPosition: null,
+  },
+];
+
+const DUMMY_MAP = {
+  columnsNumber: 6,
+  selectedSquares: [],
+};
+
+const MainPage = (props) => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
-  /* =========================
-     UI STATE
-  ========================= */
+  // ADD ITEM
+  // state controls visibility of AddItem.jsx
   const [showAddItem, setShowAddItem] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [showEditMap, setShowEditMap] = useState(false);
+
+  const showAddModalHandler = () => {
+    setShowAddItem(true);
+  };
+  const closeAddModalHandler = () => {
+    setShowAddItem(false);
+  };
+
+  // updating UI: new item is added locally to state without reset of the scroll position
+  // const handleItemAdded = (newItem) => {
+  //     setLoadedItems((prevItems) => [...prevItems, newItem]);
+  // };
+
+  // EDIT ITEM.
+  // store the ID of the plant currently being edited
   const [editingPlantId, setEditingPlantId] = useState(null);
 
-  /* =========================
-     DATA STATE
-  ========================= */
-  const [plants, setPlants] = useState([]);
+  // updating UI: updated items added localy to state to reflect changes immidietly
+  // const handleItemUpdated = (updatedItem) => {
+  //     setLoadedItems(prevItems =>
+  //         prevItems.map(item =>
+  //             item.id === updatedItem.id ? updatedItem : item
+  //         )
+  //     );
+  // };
 
+  const upsertPlantHandler = (plantData) => {
+    setPlants((prevPlants) => {
+      const exists = prevPlants.some((p) => p.id === plantData.id);
+
+      if (exists) {
+        // UPDATE
+        return prevPlants.map((p) =>
+          p.id === plantData.id ? { ...p, ...plantData } : p
+        );
+      }
+
+      // ADD
+      return [...prevPlants, plantData];
+    });
+  };
+
+  // DELETE ITEM confirmation.
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  const showDeleteModalHandler = () => {
+    setShowDeleteModal(true);
+  };
+
+  const closeDeleteModalHandler = () => {
+    setShowDeleteModal(false);
+  };
+
+  // MAP
+  // map state toggle
+  const [showEditMap, setShowEditMap] = useState(false);
+
+  const showEditMapHandler = () => {
+    setTempSelectedSquares(selectedSquares); // copy current map
+    setShowEditMap(true);
+  };
+
+  // const closeEditMapHandler = () => {
+  //     setShowEditMap(false);
+  // };
+
+  //FETCHING MAPS FROM DATABASE:
   const [map, setMap] = useState({
     columnsNumber: 0,
     selectedSquares: [],
   });
 
-  // selected squares state
-  const [selectedSquares, setSelectedSquares] = useState([]);
-  // temp state while editing map
-  const [tempSelectedSquares, setTempSelectedSquares] = useState([]);
-
-  /* =========================
-     FETCH MAP
-  ========================= */
   useEffect(() => {
-    const fetchMap = async () => {
+    //async is not used directly in useEffect.
+    const fetchMaps = async () => {
       try {
         const responseData = await sendRequest(
           `${import.meta.env.VITE_BACKEND_URL}/api/maps`,
-          "GET"
+          "GET",
+          null
         );
+
+        // console.log("FETCHED MAP RESPONSE:", responseData);
 
         setMap(responseData.map);
       } catch (err) {}
     };
-
-    fetchMap();
+    fetchMaps();
   }, [sendRequest]);
 
-  /* =========================
-     SYNC MAP → STATE
-  ========================= */
+  //SYNC MAP → STATE
   useEffect(() => {
     if (Array.isArray(map.selectedSquares)) {
       setSelectedSquares(map.selectedSquares);
       setTempSelectedSquares(map.selectedSquares);
     }
-  }, [map]);
+  }, [map.selectedSquares]);
 
-  /* =========================
-     FETCH PLANTS
-  ========================= */
+  // main map state
+  const [selectedSquares, setSelectedSquares] = useState(map.selectedSquares);
+
+  // local temp editing state
+  const [tempSelectedSquares, setTempSelectedSquares] =
+    useState(selectedSquares);
+
+  //FETCHING PLANTS FROM DATABASE:
+  const [plants, setPlants] = useState([]);
+
   useEffect(() => {
+    //async is not used directly in useEffect.
     const fetchPlants = async () => {
       try {
         const responseData = await sendRequest(
           `${import.meta.env.VITE_BACKEND_URL}/api/plants`,
-          "GET"
+          "GET",
+          null
         );
         setPlants(responseData.plantsList);
       } catch (err) {}
     };
-
     fetchPlants();
   }, [sendRequest]);
 
-  /* =========================
-     PLANTS CRUD (LOCAL UI)
-  ========================= */
-  const upsertPlantHandler = (plantData) => {
-    setPlants((prev) => {
-      const exists = prev.some((p) => p.id === plantData.id);
-      return exists
-        ? prev.map((p) => (p.id === plantData.id ? { ...p, ...plantData } : p))
-        : [...prev, plantData];
-    });
-  };
-
-  /* =========================
-     MAP EDITING
-  ========================= */
-  const showEditMapHandler = () => {
-    setTempSelectedSquares(selectedSquares);
-    setShowEditMap(true);
-  };
-
   const squareClickHandler = (squareId) => {
-    setTempSelectedSquares((prev) =>
-      prev.includes(squareId)
-        ? prev.filter((id) => id !== squareId)
-        : [...prev, squareId]
+    setTempSelectedSquares(
+      (prev) =>
+        prev.includes(squareId)
+          ? prev.filter((id) => id !== squareId) // unselect
+          : [...prev, squareId] // select
     );
   };
 
+  //selected squares updates here:
   const submitMapHandler = () => {
     setSelectedSquares(tempSelectedSquares);
     setShowEditMap(false);
   };
 
   const mapCancelHandler = () => {
-    setTempSelectedSquares(selectedSquares);
+    setTempSelectedSquares(selectedSquares); // reset to original
     setShowEditMap(false);
   };
 
@@ -124,9 +190,9 @@ const MainPage = () => {
     setTempSelectedSquares([]);
   };
 
-  /* =========================
-     DRAG & DROP
-  ========================= */
+  //drag&drop:
+
+  // DROP → update plant.mapPosition
   const plantDropHandler = (squareIndex, plantId) => {
     setPlants((prev) =>
       prev.map((plant) => {
@@ -134,16 +200,17 @@ const MainPage = () => {
           return { ...plant, mapPosition: squareIndex };
         }
         if (plant.mapPosition === squareIndex) {
-          return { ...plant, mapPosition: null };
+          return { ...plant, mapPosition: null }; // collision handling
         }
         return plant;
       })
     );
   };
 
+  // REMOVE → clear plant.mapPosition
   const removePlantFromSquare = (squareIndex) => {
-    setPlants((prev) =>
-      prev.map((plant) =>
+    setPlants((prevPlants) =>
+      prevPlants.map((plant) =>
         plant.mapPosition === squareIndex
           ? { ...plant, mapPosition: null }
           : plant
@@ -151,13 +218,10 @@ const MainPage = () => {
     );
   };
 
-  /* =========================
-     JSX
-  ========================= */
+  //JSX
   return (
     <>
       <ErrorModal error={error} onClear={clearError} />
-
       {isLoading && (
         <div className="center">
           <LoadingSpinner />
@@ -165,23 +229,32 @@ const MainPage = () => {
       )}
 
       <div className="main-container">
-        {/* PLANTS LIST */}
+        {/* LIST OF PLANTS */}
         <div className="plants-list">
           <div className="plants-list-container">
+            <div className="plants-list-item">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div>last</div>
+              <div>next</div>
+              <div></div>
+            </div>
+
             <PlantsList
               plants={plants}
               editingPlantId={editingPlantId}
               setEditingPlantId={setEditingPlantId}
-              showDeleteModalHandler={() => setShowDeleteModal(true)}
+              showDeleteModalHandler={showDeleteModalHandler}
               onUpdatePlant={upsertPlantHandler}
+              //  closeEditModalHandler={closeEditModalHandler}
             />
+
+            {/* ADD ITEM */}
 
             {!showAddItem && (
               <div className="plants-list-item">
-                <button
-                  className="add-plant-btn"
-                  onClick={() => setShowAddItem(true)}
-                >
+                <button className="add-plant-btn" onClick={showAddModalHandler}>
                   add plant
                 </button>
               </div>
@@ -190,20 +263,20 @@ const MainPage = () => {
             {showAddItem && (
               <AddPlant
                 onSavePlant={upsertPlantHandler}
-                closeAddModalHandler={() => setShowAddItem(false)}
+                closeAddModalHandler={closeAddModalHandler}
               />
             )}
 
+            {/* EDIT ITEM */}
+
+            {/* CONFIRATION TO DELETE ITEM */}
             <Modal
               show={showDeleteModal}
-              onCancel={() => setShowDeleteModal(false)}
+              onCancel={closeDeleteModalHandler}
               footer={
                 <>
                   <button type="button">delete</button>
-                  <button
-                    type="button"
-                    onClick={() => setShowDeleteModal(false)}
-                  >
+                  <button type="button" onClick={closeDeleteModalHandler}>
                     cancel
                   </button>
                 </>
@@ -225,6 +298,7 @@ const MainPage = () => {
               submitMapHandler={submitMapHandler}
               mapCancelHandler={mapCancelHandler}
               mapResetHandler={mapResetHandler}
+              //drag&drop:
               onPlantDrop={plantDropHandler}
               onRemovePlant={removePlantFromSquare}
             />
