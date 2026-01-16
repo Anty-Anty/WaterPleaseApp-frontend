@@ -94,7 +94,7 @@ const MainPage = () => {
     });
   };
 
-   /* =========================
+  /* =========================
      PLANT CREATE API
   ========================= */
   const createPlantHandler = async (plantData) => {
@@ -116,6 +116,32 @@ const MainPage = () => {
 
       upsertPlantHandler(responseData.plant);
       setShowAddItem(false);
+    } catch (err) {}
+  };
+
+  /* =========================
+     PLANT UPDATE API
+  ========================= */
+  const updatePlantHandler = async (plantData) => {
+    try {
+      const responseData = await sendRequest(
+        `${import.meta.env.VITE_BACKEND_URL}/api/plants/${plantData.id}`,
+        "PATCH",
+        JSON.stringify({
+          title: plantData.title,
+          img: plantData.img,
+          wLevel: plantData.wLevel,
+          lastWateredDate: plantData.lastWateredDate,
+          daysToNextWatering: plantData.daysToNextWatering,
+          mapPosition: plantData.mapPosition,
+          mapId: plantData.mapId,
+        }),
+        {
+          "Content-Type": "application/json",
+        }
+      );
+
+      upsertPlantHandler(responseData.plant);
     } catch (err) {}
   };
 
@@ -171,30 +197,60 @@ const MainPage = () => {
   };
 
   /* =========================
-     DRAG & DROP (LOCAL)
-  ========================= */
-  const plantDropHandler = (squareIndex, plantId) => {
-    setPlants((prev) =>
-      prev.map((plant) => {
-        if (plant.id === plantId) {
-          return { ...plant, mapPosition: squareIndex };
+   DRAG & DROP (PERSISTED)
+========================= */
+  const plantDropHandler = async (squareIndex, plantId) => {
+    // 🔹 Ensure the plant exists in state
+    const plant = plants.find((p) => p._id === plantId);
+
+    if (!plant) {
+      console.error("Plant not found in state:", plantId);
+      return;
+    }
+
+    try {
+      // 🔹 PATCH to backend using the correct _id
+      const responseData = await sendRequest(
+        `${import.meta.env.VITE_BACKEND_URL}/api/plants/${plant._id}`,
+        "PATCH",
+        JSON.stringify({
+          mapPosition: squareIndex,
+          mapId: map.id,
+        }),
+        {
+          "Content-Type": "application/json",
         }
-        if (plant.mapPosition === squareIndex) {
-          return { ...plant, mapPosition: null };
-        }
-        return plant;
-      })
-    );
+      );
+
+      // 🔹 Update frontend state
+      upsertPlantHandler(responseData.plant);
+    } catch (err) {
+      console.error("Error updating plant position:", err);
+    }
   };
 
-  const removePlantFromSquare = (squareIndex) => {
-    setPlants((prev) =>
-      prev.map((plant) =>
-        plant.mapPosition === squareIndex
-          ? { ...plant, mapPosition: null }
-          : plant
-      )
-    );
+  /* =========================
+   REMOVE PLANT FROM MAP
+========================= */
+  const removePlantFromSquare = async (squareIndex) => {
+    const plant = plants.find((p) => p.mapPosition === squareIndex);
+    if (!plant) return;
+
+    try {
+      const responseData = await sendRequest(
+        `${import.meta.env.VITE_BACKEND_URL}/api/plants/${plant.id}`,
+        "PATCH",
+        JSON.stringify({
+          mapPosition: null,
+          mapId: map.id,
+        }),
+        {
+          "Content-Type": "application/json",
+        }
+      );
+
+      upsertPlantHandler(responseData.plant);
+    } catch (err) {}
   };
 
   /* =========================
@@ -219,7 +275,7 @@ const MainPage = () => {
               editingPlantId={editingPlantId}
               setEditingPlantId={setEditingPlantId}
               showDeleteModalHandler={() => setShowDeleteModal(true)}
-              onUpdatePlant={upsertPlantHandler}
+              onUpdatePlant={updatePlantHandler}
             />
 
             {!showAddItem && (
