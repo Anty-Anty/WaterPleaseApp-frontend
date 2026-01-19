@@ -32,7 +32,7 @@ const Plant = props => {
 
                 <div className="plant-button-stack">
                     <button onClick={() => props.setEditingPlantId(props.id)}>✎</button>
-                    <button onClick={props.showDeleteModalHandler}>🗑</button>
+                    <button onClick={() => props.showDeleteModalHandler(props.id)}>🗑</button>
                 </div>
 
 

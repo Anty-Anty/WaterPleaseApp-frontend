@@ -21,6 +21,7 @@ const MainPage = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditMap, setShowEditMap] = useState(false);
   const [editingPlantId, setEditingPlantId] = useState(null);
+  const [deletingPlantId, setDeletingPlantId] = useState(null);
 
   /* =========================
      DATA STATE
@@ -51,7 +52,7 @@ const MainPage = () => {
         );
 
         setMap(responseData.map);
-      } catch (err) {}
+      } catch (err) { }
     };
 
     fetchMap();
@@ -78,7 +79,7 @@ const MainPage = () => {
           "GET"
         );
         setPlants(responseData.plantsList);
-      } catch (err) {}
+      } catch (err) { }
     };
 
     fetchPlants();
@@ -118,7 +119,7 @@ const MainPage = () => {
 
       upsertPlantHandler(responseData.plant);
       setShowAddItem(false);
-    } catch (err) {}
+    } catch (err) { }
   };
 
   /* =========================
@@ -144,7 +145,30 @@ const MainPage = () => {
       );
 
       upsertPlantHandler(responseData.plant);
-    } catch (err) {}
+    } catch (err) { }
+  };
+
+  /* =========================
+     PLANT DELETE API
+  ========================= */
+
+  const deletePlantHandler = async () => {
+    if (!deletingPlantId) return;
+
+    try {
+      await sendRequest(
+        `${import.meta.env.VITE_BACKEND_URL}/api/plants/${deletingPlantId}`,
+        "DELETE"
+      );
+
+      // remove plant from local state
+      setPlants(prev =>
+        prev.filter(plant => plant.id !== deletingPlantId)
+      );
+
+      setShowDeleteModal(false);
+      setDeletingPlantId(null);
+    } catch (err) { }
   };
 
   /* =========================
@@ -165,7 +189,7 @@ const MainPage = () => {
 
       setMap(responseData.map);
       setSelectedSquares(responseData.map.selectedSquares);
-    } catch (err) {}
+    } catch (err) { }
   };
 
   /* =========================
@@ -252,7 +276,7 @@ const MainPage = () => {
       );
 
       upsertPlantHandler(responseData.plant);
-    } catch (err) {}
+    } catch (err) { }
   };
 
   /* =========================
@@ -276,7 +300,10 @@ const MainPage = () => {
               plants={plants}
               editingPlantId={editingPlantId}
               setEditingPlantId={setEditingPlantId}
-              showDeleteModalHandler={() => setShowDeleteModal(true)}
+              showDeleteModalHandler={(id) => {
+                setDeletingPlantId(id);
+                setShowDeleteModal(true);
+              }}
               onUpdatePlant={updatePlantHandler}
             />
 
@@ -303,7 +330,12 @@ const MainPage = () => {
               onCancel={() => setShowDeleteModal(false)}
               footer={
                 <>
-                  <button type="button">delete</button>
+                  <button
+                    type="button"
+                    onClick={deletePlantHandler}
+                  >
+                    delete
+                  </button>
                   <button
                     type="button"
                     onClick={() => setShowDeleteModal(false)}
