@@ -12,6 +12,12 @@ import './AddEditPlant.css';
 
 const AddPlant = props => {
 
+    //IOS calender fix
+    const isIOS =
+        typeof navigator !== "undefined" &&
+        (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
+            (navigator.maxTouchPoints && navigator.maxTouchPoints > 1 && navigator.userAgent.includes("Mac")));
+
     //hook creates lists of available images
     const logos = useImagesList('plant');
     const wLogos = useImagesList('water');
@@ -167,15 +173,43 @@ const AddPlant = props => {
 
                 {/* Last Watering Date */}
                 <div>
-                    <CustomDateInput
-                        id="lastWateredDate"
-                        placeholder="Select date"
-                        // initialValue={lastWateredDate}
-                        validators={[VALIDATOR_MAX_TODAY()]}
-                        errorText="Please select a valid date."
-                        // onInput={dateInputHandler}
-                        onInput={inputHandler}
-                    />
+                    {isIOS ? (
+                        //IOS calender
+                        <div className="input-wrapper">
+                            <input
+                                type="date"
+                                name="lastWateredDate"
+                                value={formState.inputs.lastWateredDate.value || ""}
+                                onChange={(e) => {
+                                    const value = e.target.value;
+                                    inputHandler(
+                                        "lastWateredDate",
+                                        value,
+                                        value.trim() !== "" // or your validate() util if you prefer
+                                    );
+                                }}
+                                onBlur={() =>
+                                    inputHandler(
+                                        "lastWateredDate",
+                                        formState.inputs.lastWateredDate.value,
+                                        formState.inputs.lastWateredDate.isValid
+                                    )
+                                }
+                                className="native-date-input"
+                            />
+                        </div>
+                    ) : (
+                        //Windows calender
+                        <CustomDateInput
+                            id="lastWateredDate"
+                            placeholder="Last Watering"
+                            initialValue={props.lastWateredDate}
+                            validators={[VALIDATOR_MAX_TODAY()]}
+                            errorText="Please select a valid date."
+                            // onInput={dateInputHandler}
+                            onInput={inputHandler}
+                        />
+                    )}
                 </div>
 
                 {/* Next Watering Date */}
