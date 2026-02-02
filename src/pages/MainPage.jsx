@@ -296,6 +296,16 @@ const MainPage = () => {
         {/* PLANTS LIST */}
         <div className="plants-list">
           <div className="plants-list-container">
+            
+            <div className="plants-list-item">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div>last</div>
+              <div>next</div>
+              <div></div>
+            </div>
+
             <PlantsList
               plants={plants}
               editingPlantId={editingPlantId}
