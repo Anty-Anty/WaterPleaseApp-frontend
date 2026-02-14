@@ -102,4 +102,14 @@ The frontend relies on consistent API responses and normalized identifiers, maki
 
 ## Screenshots
 
-![Dashboard](public/screenshots/dashboard.png)
+### Main Dashboard
+![Dashboard](public/screenshots/dashboard.webp)
+
+### Add Plant Workflow
+![Add plant form](public/screenshots/add-plant.webp)
+
+### Interactive Map Editor
+![Map edit mode](public/screenshots/map-edit.webp)
+
+### Mobile View
+![Mobile View](public/screenshots/mobile.webp) 
