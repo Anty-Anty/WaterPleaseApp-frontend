@@ -1,11 +1,14 @@
 # WaterPleaseApp – Frontend
 
-A React-based frontend for managing indoor plants, visualizing their placement on a grid map, and tracking watering schedules.
+WaterPleaseApp is a full-stack web application for managing indoor plants, visualizing their placement on a grid map, and tracking watering schedules.
+
+Frontend: React + TypeScript  
+Backend: Node.js + Express + MongoDB
 
 Backend repository: https://github.com/Anty-Anty/WaterPleaseApp-backend
 
 ## Live demo
-https://waterpleaseapp.netlify.app
+https://waterpleaseapp1.netlify.app
 
 ⚠️ Cold start notice
 The backend is hosted on Render’s free tier.  
